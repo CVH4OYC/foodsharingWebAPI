@@ -1,0 +1,6 @@
+@FoodsharingWebAPI_HostAddress = http://localhost:5118
+
+GET {{FoodsharingWebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
