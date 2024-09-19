@@ -17,17 +17,32 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<List<User>>> GetAll()
         {
             var users = await userRepository.GetAll();
-            return Ok(users);
+            if (users != null)
+                return Ok(users);
+            else
+                return NotFound();
         }
-        //[HttpGet("WithDetails")]
-        //public async Task<IActionResult> GetAllWithDetails()
-        //{
-        //    var users = await userRepository.GetWithInclude(u => u.Profile, u => u.UserRoles);
-        //    return Ok(users);
-        //}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(int id)
+        {
+            var user = await userRepository.GetById(id);
+            if (user != null)
+                return Ok(user);
+            else
+                return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] User user)
+        {
+            bool result = await userRepository.Add(user);
+            if (result)
+                return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+            else
+                return BadRequest();
+        }
 
     }
 }

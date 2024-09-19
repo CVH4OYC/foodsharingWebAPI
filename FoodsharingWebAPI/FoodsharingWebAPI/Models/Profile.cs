@@ -15,7 +15,7 @@ namespace FoodsharingWebAPI.Models
         [StringLength(500, ErrorMessage = "Длина описания превышает 500 символов!")]
         public string? Bio {  get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 
     }
 }
