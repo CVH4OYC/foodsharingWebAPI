@@ -23,26 +23,25 @@ namespace FoodsharingWebAPI.Repository
             return await context.FindAsync<T>(id);
         }
 
-        public async Task<bool> Add(T entity)
+        public async Task Add(T entity)
         {
             await context.AddAsync(entity);
-            return await Save();
+            await context.SaveChangesAsync();
         }
 
-        public async Task<bool> Update(T entity)
+        public async Task Update(T entity)
         {
-            context.Update(entity);
-            return await Save();
+            // прикрепляем к контексту без отслеживания изменений
+            context.Set<T>().Attach(entity);
+            // говорим, что сущность изменена
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
 
-        public async Task<bool> Delete(T entity)
+        public async Task Delete(T entity)
         {
             context.Remove(entity);
-            return await Save();
-        }
-        public async Task<bool> Save()
-        {
-            return await context.SaveChangesAsync() > 0;
+            await context.SaveChangesAsync();
         }
         public async Task<IEnumerable<T>> GetWithInclude(params Expression<Func<T, object>>[] includeProperties)
         {

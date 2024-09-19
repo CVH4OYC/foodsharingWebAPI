@@ -117,7 +117,7 @@ namespace FoodsharingWebAPI.Migrations
                             Id = 1,
                             AddressId = 1,
                             CategoryId = 4,
-                            DateCreation = new DateTime(2024, 9, 19, 9, 45, 41, 817, DateTimeKind.Utc).AddTicks(8353),
+                            DateCreation = new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2309),
                             Description = "Не нужна гречка, заберите пожалуйста!",
                             ExpirationDate = new DateTime(2025, 4, 14, 19, 0, 0, 0, DateTimeKind.Utc),
                             Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHknlM8LS4l-x7kEYfmVZttH2PLnPW-EUKUw&s",
@@ -247,7 +247,7 @@ namespace FoodsharingWebAPI.Migrations
                         {
                             Id = 1,
                             ChatId = 1,
-                            Date = new DateTime(2024, 9, 19, 9, 45, 41, 817, DateTimeKind.Utc).AddTicks(8600),
+                            Date = new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2532),
                             SenderId = 2,
                             StatusId = 1,
                             Text = "Добрый день, когда и как можно забрать гречку?"
@@ -495,7 +495,7 @@ namespace FoodsharingWebAPI.Migrations
                             RecipientId = 1,
                             SenderId = 2,
                             StatusId = 2,
-                            TransactionDate = new DateTime(2024, 9, 19, 9, 45, 41, 817, DateTimeKind.Utc).AddTicks(8492)
+                            TransactionDate = new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2423)
                         });
                 });
 
@@ -778,8 +778,7 @@ namespace FoodsharingWebAPI.Migrations
                 {
                     b.Navigation("Announcements");
 
-                    b.Navigation("Organization")
-                        .IsRequired();
+                    b.Navigation("Organization");
                 });
 
             modelBuilder.Entity("FoodsharingWebAPI.Models.Announcement", b =>
