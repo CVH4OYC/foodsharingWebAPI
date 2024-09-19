@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodsharingWebAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240918122147_Initial")]
+    [Migration("20240919100529_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -120,7 +120,7 @@ namespace FoodsharingWebAPI.Migrations
                             Id = 1,
                             AddressId = 1,
                             CategoryId = 4,
-                            DateCreation = new DateTime(2024, 9, 18, 12, 21, 47, 137, DateTimeKind.Utc).AddTicks(61),
+                            DateCreation = new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2309),
                             Description = "Не нужна гречка, заберите пожалуйста!",
                             ExpirationDate = new DateTime(2025, 4, 14, 19, 0, 0, 0, DateTimeKind.Utc),
                             Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHknlM8LS4l-x7kEYfmVZttH2PLnPW-EUKUw&s",
@@ -250,7 +250,7 @@ namespace FoodsharingWebAPI.Migrations
                         {
                             Id = 1,
                             ChatId = 1,
-                            Date = new DateTime(2024, 9, 18, 12, 21, 47, 137, DateTimeKind.Utc).AddTicks(350),
+                            Date = new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2532),
                             SenderId = 2,
                             StatusId = 1,
                             Text = "Добрый день, когда и как можно забрать гречку?"
@@ -498,7 +498,7 @@ namespace FoodsharingWebAPI.Migrations
                             RecipientId = 1,
                             SenderId = 2,
                             StatusId = 2,
-                            TransactionDate = new DateTime(2024, 9, 18, 12, 21, 47, 137, DateTimeKind.Utc).AddTicks(214)
+                            TransactionDate = new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2423)
                         });
                 });
 
@@ -781,8 +781,7 @@ namespace FoodsharingWebAPI.Migrations
                 {
                     b.Navigation("Announcements");
 
-                    b.Navigation("Organization")
-                        .IsRequired();
+                    b.Navigation("Organization");
                 });
 
             modelBuilder.Entity("FoodsharingWebAPI.Models.Announcement", b =>
@@ -828,11 +827,9 @@ namespace FoodsharingWebAPI.Migrations
 
                     b.Navigation("Messages");
 
-                    b.Navigation("Profile")
-                        .IsRequired();
+                    b.Navigation("Profile");
 
-                    b.Navigation("Representative")
-                        .IsRequired();
+                    b.Navigation("Representative");
 
                     b.Navigation("Transactions");
 

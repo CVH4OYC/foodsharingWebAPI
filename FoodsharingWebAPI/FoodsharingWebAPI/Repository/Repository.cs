@@ -1,9 +1,11 @@
 ﻿using FoodsharingWebAPI.Data;
 using FoodsharingWebAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FoodsharingWebAPI.Repository
 {
+    // универсальный репозиторий
     public class Repository <T> : IRepository<T> where T : class
     {
         DbContext context;
@@ -21,27 +23,45 @@ namespace FoodsharingWebAPI.Repository
             return await context.FindAsync<T>(id);
         }
 
-        public async Task<bool> Add(T entity)
+        public async Task Add(T entity)
         {
             await context.AddAsync(entity);
-            return await Save();
+            await context.SaveChangesAsync();
         }
 
-        public async Task<bool> Update(T entity)
+        public async Task Update(T entity)
         {
-            context.Update(entity);
-            return await Save();
+            // прикрепляем к контексту без отслеживания изменений
+            context.Set<T>().Attach(entity);
+            // говорим, что сущность изменена
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
 
-        public async Task<bool> Delete(T entity)
+        public async Task Delete(T entity)
         {
             context.Remove(entity);
-            return await Save();
+            await context.SaveChangesAsync();
         }
-        public async Task<bool> Save()
+        public async Task<IEnumerable<T>> GetWithInclude(params Expression<Func<T, object>>[] includeProperties)
         {
-            return await context.SaveChangesAsync() > 0;
+            return await Include(includeProperties).ToListAsync();
         }
+
+        public async Task<IEnumerable<T>> GetWithInclude(Func<T, bool> predicate,
+            params Expression<Func<T, object>>[] includeProperties)
+        {
+            var query = Include(includeProperties);
+            return await Task.FromResult(query.Where(predicate).ToList());
+        }
+
+        private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = context.Set<T>().AsNoTracking();
+            return includeProperties
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        }
+
         private bool disposed = false;
         public virtual void Dispose(bool disposing)
         {
