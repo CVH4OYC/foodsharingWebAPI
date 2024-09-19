@@ -1,6 +1,7 @@
 ﻿using FoodsharingWebAPI.Data;
 using FoodsharingWebAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FoodsharingWebAPI.Repository
 {
@@ -42,6 +43,25 @@ namespace FoodsharingWebAPI.Repository
         {
             return await context.SaveChangesAsync() > 0;
         }
+        public async Task<IEnumerable<T>> GetWithInclude(params Expression<Func<T, object>>[] includeProperties)
+        {
+            return await Include(includeProperties).ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetWithInclude(Func<T, bool> predicate,
+            params Expression<Func<T, object>>[] includeProperties)
+        {
+            var query = Include(includeProperties);
+            return await Task.FromResult(query.Where(predicate).ToList());
+        }
+
+        private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = context.Set<T>().AsNoTracking();
+            return includeProperties
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        }
+
         private bool disposed = false;
         public virtual void Dispose(bool disposing)
         {
