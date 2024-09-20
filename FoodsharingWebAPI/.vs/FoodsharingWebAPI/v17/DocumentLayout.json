@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|c:\\users\\79048\\documents\\github\\foodsharingwebapi\\foodsharingwebapi\\foodsharingwebapi\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|solutionrelative:foodsharingwebapi\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|c:\\users\\79048\\documents\\github\\foodsharingwebapi\\foodsharingwebapi\\foodsharingwebapi\\controllers\\userrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|solutionrelative:foodsharingwebapi\\controllers\\userrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -45,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|c:\\users\\79048\\documents\\github\\foodsharingwebapi\\foodsharingwebapi\\foodsharingwebapi\\controllers\\announcementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|solutionrelative:foodsharingwebapi\\controllers\\announcementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|c:\\users\\79048\\documents\\github\\foodsharingwebapi\\foodsharingwebapi\\foodsharingwebapi\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|solutionrelative:foodsharingwebapi\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{48D82363-C7E4-4084-A54F-217ABF01C731}|FoodsharingWebAPI\\FoodsharingWebAPI.csproj|c:\\users\\79048\\documents\\github\\foodsharingwebapi\\foodsharingwebapi\\foodsharingwebapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -134,11 +134,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "OrganizationController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\OrganizationController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\OrganizationController.cs",
@@ -146,12 +146,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\OrganizationController.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAAAIwHIAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:39:15.358Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:39:15.358Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\ProfileController.cs",
@@ -159,12 +158,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\ProfileController.cs",
               "ViewState": "AQIAAEsAAAAAAAAAAAAowGgAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:39:35.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:39:35.789Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "MessageStatusController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\MessageStatusController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\MessageStatusController.cs",
@@ -172,12 +170,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\MessageStatusController.cs",
               "ViewState": "AQIAAEUAAAAAAAAAAAA7wGkAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:37:34.365Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:37:34.365Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MessageController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\MessageController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\MessageController.cs",
@@ -185,12 +182,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\MessageController.cs",
               "ViewState": "AQIAAEYAAAAAAAAAAAAtwG8AAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:36:54.063Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:36:54.063Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "RoleController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\RoleController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\RoleController.cs",
@@ -198,12 +194,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\RoleController.cs",
               "ViewState": "AQIAAEMAAAAAAAAAAAAkwGkAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T14:20:59.474Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T14:20:59.474Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TransactionController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\TransactionController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\TransactionController.cs",
@@ -211,12 +206,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\TransactionController.cs",
               "ViewState": "AQIAAEUAAAAAAAAAAAAqwGkAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:39:52.472Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:39:52.472Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "TransactionStatusController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\TransactionStatusController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\TransactionStatusController.cs",
@@ -224,12 +218,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\TransactionStatusController.cs",
               "ViewState": "AQIAAEYAAAAAAAAAAAAhwE4AAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:40:54.081Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:40:54.081Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\UserController.cs",
@@ -237,12 +230,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\UserController.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAYwFEAAABrAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T07:02:40.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T07:02:40.047Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\CategoryController.cs",
@@ -250,12 +242,11 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\CategoryController.cs",
               "ViewState": "AQIAAEYAAAAAAAAAAAAIwGkAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:36:13.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:36:13.609Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AnnouncementController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\AnnouncementController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\AnnouncementController.cs",
@@ -263,18 +254,17 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\AnnouncementController.cs",
               "ViewState": "AQIAAEwAAAAAAAAAAAAUwHAAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:35:54.263Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:35:54.263Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
               "Title": "AddressController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\AddressController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\AddressController.cs",
               "ToolTip": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\AddressController.cs",
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\AddressController.cs",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAowG8AAAA7AAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-19T15:35:31.752Z",
               "EditorCaption": ""
@@ -289,8 +279,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\ChatController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAFIAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:36:25.708Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:36:25.708Z"
             },
             {
               "$type": "Document",
@@ -302,18 +291,17 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\RepresentativeController.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAAAowEQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:41:40.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:41:40.914Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserRoleController.cs",
               "DocumentMoniker": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\UserRoleController.cs",
               "RelativeDocumentMoniker": "FoodsharingWebAPI\\Controllers\\UserRoleController.cs",
               "ToolTip": "C:\\Users\\79048\\Documents\\GitHub\\foodsharingWebAPI\\FoodsharingWebAPI\\FoodsharingWebAPI\\Controllers\\UserRoleController.cs",
               "RelativeToolTip": "FoodsharingWebAPI\\Controllers\\UserRoleController.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAUwGMAAABQAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGMAAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-19T14:33:27.204Z",
               "EditorCaption": ""
@@ -328,8 +316,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\MessageStatus.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:25:21.426Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:25:21.426Z"
             },
             {
               "$type": "Document",
@@ -341,8 +328,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Profile.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:25:19.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:25:19.42Z"
             },
             {
               "$type": "Document",
@@ -354,8 +340,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Organization.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:25:01.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:25:01.938Z"
             },
             {
               "$type": "Document",
@@ -367,8 +352,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Representative.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:25:18.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:25:18.536Z"
             },
             {
               "$type": "Document",
@@ -380,8 +364,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Transaction.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAA/wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:25:11.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:25:11.692Z"
             },
             {
               "$type": "Document",
@@ -393,8 +376,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Message.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAA9wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:24:59.088Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:24:59.088Z"
             },
             {
               "$type": "Document",
@@ -406,8 +388,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Chat.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAAwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:07:55.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:07:55.633Z"
             },
             {
               "$type": "Document",
@@ -419,8 +400,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Category.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:07:45.087Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:07:45.087Z"
             },
             {
               "$type": "Document",
@@ -432,8 +412,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Announcement.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:07:16.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:07:16.489Z"
             },
             {
               "$type": "Document",
@@ -445,8 +424,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Address.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:05:08.477Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:05:08.477Z"
             },
             {
               "$type": "Document",
@@ -458,8 +436,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Program.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-14T07:21:49.324Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-14T07:21:49.324Z"
             },
             {
               "$type": "Document",
@@ -471,8 +448,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\TransactionStatus.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAAzwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:25:12.484Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:25:12.484Z"
             },
             {
               "$type": "Document",
@@ -484,8 +460,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\UserRole.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAAwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T15:10:26.301Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T15:10:26.301Z"
             },
             {
               "$type": "Document",
@@ -497,8 +472,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\Role.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T14:40:32.928Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T14:40:32.928Z"
             },
             {
               "$type": "Document",
@@ -510,8 +484,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Repository\\Repository.cs",
               "ViewState": "AQIAACwAAAAAAAAAAAAswDYAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T10:37:34.096Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T10:37:34.096Z"
             },
             {
               "$type": "Document",
@@ -523,8 +496,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Models\\User.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAkwBAAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T14:39:57.528Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T14:39:57.528Z"
             },
             {
               "$type": "Document",
@@ -536,8 +508,7 @@
               "RelativeToolTip": "FoodsharingWebAPI\\Interfaces\\IRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T10:59:07.324Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T10:59:07.324Z"
             }
           ]
         }
