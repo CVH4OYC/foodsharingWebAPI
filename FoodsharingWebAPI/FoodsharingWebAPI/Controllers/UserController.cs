@@ -77,8 +77,11 @@ namespace FoodsharingWebAPI.Controllers
                 var user = await userRepository.GetById(id);
                 if (user == null)
                     return NotFound("Пользователя с таким id не существует");
-                user.UserName = userUpdate.UserName;
-                user.Password = userUpdate.Password;
+                if (!string.IsNullOrEmpty(userUpdate.UserName))
+                    user.UserName = userUpdate.UserName;
+                if (!string.IsNullOrEmpty(userUpdate.Password)) // это временно, потом нужно хеш записывать
+                    user.Password = userUpdate.Password;
+
                 await userRepository.Update(user);
                 return Ok();
             }
