@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class AddressController : ControllerBase
     {
-        private readonly IRepository<Address> AddressRepository;
+        private readonly IRepository<Address> addressRepository;
         private readonly ILogger<AddressController> logger;
-        public AddressController(IRepository<Address> AddressRepository, ILogger<AddressController> logger)
+        public AddressController(IRepository<Address> addressRepository, ILogger<AddressController> logger)
         {
-            this.AddressRepository = AddressRepository;
+            this.addressRepository = addressRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Addresss = await AddressRepository.GetAll();
+                var Addresss = await addressRepository.GetAll();
                 if (Addresss != null)
                     return Ok(Addresss);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Address = await AddressRepository.GetById(id);
+                var Address = await addressRepository.GetById(id);
                 if (Address != null)
                     return Ok(Address);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await AddressRepository.Add(Address);
+                await addressRepository.Add(Address);
                 return CreatedAtAction(nameof(GetAddress), new { id = Address.Id }, Address);
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Address = await AddressRepository.GetById(id);
+                var Address = await addressRepository.GetById(id);
                 if (Address == null)
                     return NotFound("Адрес с таким id не существует");
                 
@@ -86,7 +86,7 @@ namespace FoodsharingWebAPI.Controllers
                 if (!string.IsNullOrEmpty(AddressUpdate.House))
                     Address.House = AddressUpdate.House;
 
-                await AddressRepository.Update(Address);
+                await addressRepository.Update(Address);
                 return Ok();
             }
             catch (Exception ex)
@@ -100,10 +100,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Address = await AddressRepository.GetById(id);
+                var Address = await addressRepository.GetById(id);
                 if (Address == null)
                     return NotFound("Адрес с таким id не существует");
-                await AddressRepository.Delete(Address);
+                await addressRepository.Delete(Address);
                 return Ok();
             }
             catch (Exception ex)
