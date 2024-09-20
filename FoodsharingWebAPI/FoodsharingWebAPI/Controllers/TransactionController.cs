@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private readonly IRepository<Transaction> TransactionRepository;
+        private readonly IRepository<Transaction> transactionRepository;
         private readonly ILogger<TransactionController> logger;
-        public TransactionController(IRepository<Transaction> TransactionRepository, ILogger<TransactionController> logger)
+        public TransactionController(IRepository<Transaction> transactionRepository, ILogger<TransactionController> logger)
         {
-            this.TransactionRepository = TransactionRepository;
+            this.transactionRepository = transactionRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Transactions = await TransactionRepository.GetAll();
+                var Transactions = await transactionRepository.GetAll();
                 if (Transactions != null)
                     return Ok(Transactions);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Transaction = await TransactionRepository.GetById(id);
+                var Transaction = await transactionRepository.GetById(id);
                 if (Transaction != null)
                     return Ok(Transaction);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await TransactionRepository.Add(Transaction);
+                await transactionRepository.Add(Transaction);
                 return CreatedAtAction(nameof(GetTransaction), new { id = Transaction.Id }, Transaction);
             }
             catch (Exception ex)
@@ -73,14 +73,14 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Transaction = await TransactionRepository.GetById(id);
+                var Transaction = await transactionRepository.GetById(id);
                 if (Transaction == null)
                     return NotFound("Транзакции с таким id не существует");
 
                 Transaction.StatusId = TransactionUpdate.StatusId; // у транзакции из внешних ключей может меняться толкьо статус
                 Transaction.TransactionDate = TransactionUpdate.TransactionDate;
 
-                await TransactionRepository.Update(Transaction);
+                await transactionRepository.Update(Transaction);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,10 +94,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Transaction = await TransactionRepository.GetById(id);
+                var Transaction = await transactionRepository.GetById(id);
                 if (Transaction == null)
                     return NotFound("Транзакции с таким id не существует");
-                await TransactionRepository.Delete(Transaction);
+                await transactionRepository.Delete(Transaction);
                 return Ok();
             }
             catch (Exception ex)

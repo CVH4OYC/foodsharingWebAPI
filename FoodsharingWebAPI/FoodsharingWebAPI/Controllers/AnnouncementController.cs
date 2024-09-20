@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class AnnouncementController : ControllerBase
     {
-        private readonly IRepository<Announcement> AnnouncementRepository;
+        private readonly IRepository<Announcement> announcementRepository;
         private readonly ILogger<AnnouncementController> logger;
-        public AnnouncementController(IRepository<Announcement> AnnouncementRepository, ILogger<AnnouncementController> logger)
+        public AnnouncementController(IRepository<Announcement> announcementRepository, ILogger<AnnouncementController> logger)
         {
-            this.AnnouncementRepository = AnnouncementRepository;
+            this.announcementRepository = announcementRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Announcements = await AnnouncementRepository.GetAll();
+                var Announcements = await announcementRepository.GetAll();
                 if (Announcements != null)
                     return Ok(Announcements);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Announcement = await AnnouncementRepository.GetById(id);
+                var Announcement = await announcementRepository.GetById(id);
                 if (Announcement != null)
                     return Ok(Announcement);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await AnnouncementRepository.Add(Announcement);
+                await announcementRepository.Add(Announcement);
                 return CreatedAtAction(nameof(GetAnnouncement), new { id = Announcement.Id }, Announcement);
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Announcement = await AnnouncementRepository.GetById(id);
+                var Announcement = await announcementRepository.GetById(id);
                 if (Announcement == null)
                     return NotFound("Объявления с таким id не существует");
 
@@ -87,7 +87,7 @@ namespace FoodsharingWebAPI.Controllers
                 Announcement.CategoryId = AnnouncementUpdate.CategoryId;
                 Announcement.ExpirationDate = AnnouncementUpdate.ExpirationDate;
 
-                await AnnouncementRepository.Update(Announcement);
+                await announcementRepository.Update(Announcement);
                 return Ok();
             }
             catch (Exception ex)
@@ -101,10 +101,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Announcement = await AnnouncementRepository.GetById(id);
+                var Announcement = await announcementRepository.GetById(id);
                 if (Announcement == null)
                     return NotFound("Объявления с таким id не существует");
-                await AnnouncementRepository.Delete(Announcement);
+                await announcementRepository.Delete(Announcement);
                 return Ok();
             }
             catch (Exception ex)

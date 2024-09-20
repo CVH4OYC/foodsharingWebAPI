@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class UserRoleController : ControllerBase
     {
-        private readonly IRepository<UserRole> UserRoleRepository;
+        private readonly IRepository<UserRole> userRoleRepository;
         private readonly ILogger<UserRoleController> logger;
-        public UserRoleController(IRepository<UserRole> UserRoleRepository, ILogger<UserRoleController> logger)
+        public UserRoleController(IRepository<UserRole> userRoleRepository, ILogger<UserRoleController> logger)
         {
-            this.UserRoleRepository = UserRoleRepository;
+            this.userRoleRepository = userRoleRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var UserRoles = await UserRoleRepository.GetAll();
+                var UserRoles = await userRoleRepository.GetAll();
                 if (UserRoles != null)
                     return Ok(UserRoles);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var UserRole = await UserRoleRepository.GetById(id);
+                var UserRole = await userRoleRepository.GetById(id);
                 if (UserRole != null)
                     return Ok(UserRole);
                 else
@@ -55,7 +55,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var UserRoles = await UserRoleRepository.GetWithInclude(ur => ur.Role, ur => ur.User);
+                var UserRoles = await userRoleRepository.GetWithInclude(ur => ur.Role, ur => ur.User);
                 if (UserRoles != null)
                     return Ok(UserRoles);
                 else
@@ -74,7 +74,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await UserRoleRepository.Add(UserRole);
+                await userRoleRepository.Add(UserRole);
                 return CreatedAtAction(nameof(GetUserRole), new { id = UserRole.Id }, UserRole);
             }
             catch (Exception ex)
@@ -88,10 +88,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var UserRole = await UserRoleRepository.GetById(id);
+                var UserRole = await userRoleRepository.GetById(id);
                 if (UserRole == null)
                     return NotFound("Записи \"Роль-пользователь\" с таким id не существует");
-                await UserRoleRepository.Delete(UserRole);
+                await userRoleRepository.Delete(UserRole);
                 return Ok();
             }
             catch (Exception ex)

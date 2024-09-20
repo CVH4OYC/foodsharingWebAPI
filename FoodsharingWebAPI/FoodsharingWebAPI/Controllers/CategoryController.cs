@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly IRepository<Category> CategoryRepository;
+        private readonly IRepository<Category> categoryRepository;
         private readonly ILogger<CategoryController> logger;
-        public CategoryController(IRepository<Category> CategoryRepository, ILogger<CategoryController> logger)
+        public CategoryController(IRepository<Category> categoryRepository, ILogger<CategoryController> logger)
         {
-            this.CategoryRepository = CategoryRepository;
+            this.categoryRepository = categoryRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Categorys = await CategoryRepository.GetAll();
+                var Categorys = await categoryRepository.GetAll();
                 if (Categorys != null)
                     return Ok(Categorys);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Category = await CategoryRepository.GetById(id);
+                var Category = await categoryRepository.GetById(id);
                 if (Category != null)
                     return Ok(Category);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await CategoryRepository.Add(Category);
+                await categoryRepository.Add(Category);
                 return CreatedAtAction(nameof(GetCategory), new { id = Category.Id }, Category);
             }
             catch (Exception ex)
@@ -73,14 +73,14 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Category = await CategoryRepository.GetById(id);
+                var Category = await categoryRepository.GetById(id);
                 if (Category == null)
                     return NotFound("Категории с таким id не существует");
                 
                 if(!string.IsNullOrEmpty(CategoryUpdate.Name))
                     Category.Name = CategoryUpdate.Name;
 
-                await CategoryRepository.Update(Category);
+                await categoryRepository.Update(Category);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,10 +94,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Category = await CategoryRepository.GetById(id);
+                var Category = await categoryRepository.GetById(id);
                 if (Category == null)
                     return NotFound("Категории с таким id не существует");
-                await CategoryRepository.Delete(Category);
+                await categoryRepository.Delete(Category);
                 return Ok();
             }
             catch (Exception ex)

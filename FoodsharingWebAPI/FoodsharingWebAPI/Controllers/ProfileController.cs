@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
-        private readonly IRepository<Profile> ProfileRepository;
+        private readonly IRepository<Profile> profileRepository;
         private readonly ILogger<ProfileController> logger;
-        public ProfileController(IRepository<Profile> ProfileRepository, ILogger<ProfileController> logger)
+        public ProfileController(IRepository<Profile> profileRepository, ILogger<ProfileController> logger)
         {
-            this.ProfileRepository = ProfileRepository;
+            this.profileRepository = profileRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Profiles = await ProfileRepository.GetAll();
+                var Profiles = await profileRepository.GetAll();
                 if (Profiles != null)
                     return Ok(Profiles);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Profile = await ProfileRepository.GetById(id);
+                var Profile = await profileRepository.GetById(id);
                 if (Profile != null)
                     return Ok(Profile);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await ProfileRepository.Add(Profile);
+                await profileRepository.Add(Profile);
                 return CreatedAtAction(nameof(GetProfile), new { id = Profile.Id }, Profile);
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Profile = await ProfileRepository.GetById(id);
+                var Profile = await profileRepository.GetById(id);
                 if (Profile == null)
                     return NotFound("Профиля с таким id не существует");
                 Profile.FirstName = ProfileUpdate.FirstName;
@@ -84,7 +84,7 @@ namespace FoodsharingWebAPI.Controllers
                 if (!string.IsNullOrEmpty(ProfileUpdate.Bio))
                     Profile.Bio = ProfileUpdate.Bio;
 
-                await ProfileRepository.Update(Profile);
+                await profileRepository.Update(Profile);
                 return Ok();
             }
             catch (Exception ex)
@@ -98,10 +98,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Profile = await ProfileRepository.GetById(id);
+                var Profile = await profileRepository.GetById(id);
                 if (Profile == null)
                     return NotFound("Профиля с таким id не существует");
-                await ProfileRepository.Delete(Profile);
+                await profileRepository.Delete(Profile);
                 return Ok();
             }
             catch (Exception ex)

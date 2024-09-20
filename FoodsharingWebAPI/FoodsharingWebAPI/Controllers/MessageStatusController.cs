@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class MessageStatusController : ControllerBase
     {
-        private readonly IRepository<MessageStatus> MessageStatusRepository;
+        private readonly IRepository<MessageStatus> messageStatusRepository;
         private readonly ILogger<MessageStatusController> logger;
-        public MessageStatusController(IRepository<MessageStatus> MessageStatusRepository, ILogger<MessageStatusController> logger)
+        public MessageStatusController(IRepository<MessageStatus> messageStatusRepository, ILogger<MessageStatusController> logger)
         {
-            this.MessageStatusRepository = MessageStatusRepository;
+            this.messageStatusRepository = messageStatusRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var MessageStatuss = await MessageStatusRepository.GetAll();
+                var MessageStatuss = await messageStatusRepository.GetAll();
                 if (MessageStatuss != null)
                     return Ok(MessageStatuss);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var MessageStatus = await MessageStatusRepository.GetById(id);
+                var MessageStatus = await messageStatusRepository.GetById(id);
                 if (MessageStatus != null)
                     return Ok(MessageStatus);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await MessageStatusRepository.Add(MessageStatus);
+                await messageStatusRepository.Add(MessageStatus);
                 return CreatedAtAction(nameof(GetMessageStatus), new { id = MessageStatus.Id }, MessageStatus);
             }
             catch (Exception ex)
@@ -73,14 +73,14 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var MessageStatus = await MessageStatusRepository.GetById(id);
+                var MessageStatus = await messageStatusRepository.GetById(id);
                 if (MessageStatus == null)
                     return NotFound("Статуса сообщения с таким id не существует");
 
                 if (!string.IsNullOrEmpty(MessageStatusUpdate.Name))
                     MessageStatus.Name = MessageStatusUpdate.Name;
 
-                await MessageStatusRepository.Update(MessageStatus);
+                await messageStatusRepository.Update(MessageStatus);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,10 +94,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var MessageStatus = await MessageStatusRepository.GetById(id);
+                var MessageStatus = await messageStatusRepository.GetById(id);
                 if (MessageStatus == null)
                     return NotFound("Статуса сообщения с таким id не существует");
-                await MessageStatusRepository.Delete(MessageStatus);
+                await messageStatusRepository.Delete(MessageStatus);
                 return Ok();
             }
             catch (Exception ex)

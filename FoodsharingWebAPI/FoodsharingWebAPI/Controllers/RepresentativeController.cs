@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class RepresentativeController : ControllerBase
     {
-        private readonly IRepository<Representative> RepresentativeRepository;
+        private readonly IRepository<Representative> representativeRepository;
         private readonly ILogger<RepresentativeController> logger;
-        public RepresentativeController(IRepository<Representative> RepresentativeRepository, ILogger<RepresentativeController> logger)
+        public RepresentativeController(IRepository<Representative> representativeRepository, ILogger<RepresentativeController> logger)
         {
-            this.RepresentativeRepository = RepresentativeRepository;
+            this.representativeRepository = representativeRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Representatives = await RepresentativeRepository.GetAll();
+                var Representatives = await representativeRepository.GetAll();
                 if (Representatives != null)
                     return Ok(Representatives);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Representative = await RepresentativeRepository.GetById(id);
+                var Representative = await representativeRepository.GetById(id);
                 if (Representative != null)
                     return Ok(Representative);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await RepresentativeRepository.Add(Representative);
+                await representativeRepository.Add(Representative);
                 return CreatedAtAction(nameof(GetRepresentative), new { id = Representative.Id }, Representative);
             }
             catch (Exception ex)
@@ -72,10 +72,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Representative = await RepresentativeRepository.GetById(id);
+                var Representative = await representativeRepository.GetById(id);
                 if (Representative == null)
                     return NotFound("Представителя организации с таким id не существует");
-                await RepresentativeRepository.Delete(Representative);
+                await representativeRepository.Delete(Representative);
                 return Ok();
             }
             catch (Exception ex)

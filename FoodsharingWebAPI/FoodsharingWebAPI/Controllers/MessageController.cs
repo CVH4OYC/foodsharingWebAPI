@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class MessageController : ControllerBase
     {
-        private readonly IRepository<Message> MessageRepository;
+        private readonly IRepository<Message> messageRepository;
         private readonly ILogger<MessageController> logger;
-        public MessageController(IRepository<Message> MessageRepository, ILogger<MessageController> logger)
+        public MessageController(IRepository<Message> messageRepository, ILogger<MessageController> logger)
         {
-            this.MessageRepository = MessageRepository;
+            this.messageRepository = messageRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Messages = await MessageRepository.GetAll();
+                var Messages = await messageRepository.GetAll();
                 if (Messages != null)
                     return Ok(Messages);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Message = await MessageRepository.GetById(id);
+                var Message = await messageRepository.GetById(id);
                 if (Message != null)
                     return Ok(Message);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await MessageRepository.Add(Message);
+                await messageRepository.Add(Message);
                 return CreatedAtAction(nameof(GetMessage), new { id = Message.Id }, Message);
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Message = await MessageRepository.GetById(id);
+                var Message = await messageRepository.GetById(id);
                 if (Message == null)
                     return NotFound("Сообщения с таким id не существует");
 
@@ -86,7 +86,7 @@ namespace FoodsharingWebAPI.Controllers
 
                 Message.StatusId = MessageUpdate.StatusId;
 
-                await MessageRepository.Update(Message);
+                await messageRepository.Update(Message);
                 return Ok();
             }
             catch (Exception ex)
@@ -100,10 +100,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Message = await MessageRepository.GetById(id);
+                var Message = await messageRepository.GetById(id);
                 if (Message == null)
                     return NotFound("Сообщения с таким id не существует");
-                await MessageRepository.Delete(Message);
+                await messageRepository.Delete(Message);
                 return Ok();
             }
             catch (Exception ex)

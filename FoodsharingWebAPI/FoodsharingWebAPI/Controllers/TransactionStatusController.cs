@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class TransactionStatusController : ControllerBase
     {
-        private readonly IRepository<TransactionStatus> TransactionStatusRepository;
+        private readonly IRepository<TransactionStatus> transactionStatusRepository;
         private readonly ILogger<TransactionStatusController> logger;
-        public TransactionStatusController(IRepository<TransactionStatus> TransactionStatusRepository, ILogger<TransactionStatusController> logger)
+        public TransactionStatusController(IRepository<TransactionStatus> transactionStatusRepository, ILogger<TransactionStatusController> logger)
         {
-            this.TransactionStatusRepository = TransactionStatusRepository;
+            this.transactionStatusRepository = transactionStatusRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var TransactionStatuss = await TransactionStatusRepository.GetAll();
+                var TransactionStatuss = await transactionStatusRepository.GetAll();
                 if (TransactionStatuss != null)
                     return Ok(TransactionStatuss);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var TransactionStatus = await TransactionStatusRepository.GetById(id);
+                var TransactionStatus = await transactionStatusRepository.GetById(id);
                 if (TransactionStatus != null)
                     return Ok(TransactionStatus);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await TransactionStatusRepository.Add(TransactionStatus);
+                await transactionStatusRepository.Add(TransactionStatus);
                 return CreatedAtAction(nameof(GetTransactionStatus), new { id = TransactionStatus.Id }, TransactionStatus);
             }
             catch (Exception ex)
@@ -73,12 +73,12 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var TransactionStatus = await TransactionStatusRepository.GetById(id);
+                var TransactionStatus = await transactionStatusRepository.GetById(id);
                 if (TransactionStatus == null)
                     return NotFound("Статуса транзакции с таким id не существует");
                 if (!string.IsNullOrEmpty(TransactionStatusUpdate.Name))
                     TransactionStatus.Name = TransactionStatusUpdate.Name;
-                await TransactionStatusRepository.Update(TransactionStatus);
+                await transactionStatusRepository.Update(TransactionStatus);
                 return Ok();
             }
             catch (Exception ex)
@@ -92,10 +92,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var TransactionStatus = await TransactionStatusRepository.GetById(id);
+                var TransactionStatus = await transactionStatusRepository.GetById(id);
                 if (TransactionStatus == null)
                     return NotFound("Статуса транзакции с таким id не существует");
-                await TransactionStatusRepository.Delete(TransactionStatus);
+                await transactionStatusRepository.Delete(TransactionStatus);
                 return Ok();
             }
             catch (Exception ex)

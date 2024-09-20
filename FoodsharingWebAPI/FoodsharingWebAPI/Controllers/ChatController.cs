@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class ChatController : ControllerBase
     {
-        private readonly IRepository<Chat> ChatRepository;
+        private readonly IRepository<Chat> chatRepository;
         private readonly ILogger<ChatController> logger;
-        public ChatController(IRepository<Chat> ChatRepository, ILogger<ChatController> logger)
+        public ChatController(IRepository<Chat> chatRepository, ILogger<ChatController> logger)
         {
-            this.ChatRepository = ChatRepository;
+            this.chatRepository = chatRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Chats = await ChatRepository.GetAll();
+                var Chats = await chatRepository.GetAll();
                 if (Chats != null)
                     return Ok(Chats);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Chat = await ChatRepository.GetById(id);
+                var Chat = await chatRepository.GetById(id);
                 if (Chat != null)
                     return Ok(Chat);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await ChatRepository.Add(Chat);
+                await chatRepository.Add(Chat);
                 return CreatedAtAction(nameof(GetChat), new { id = Chat.Id }, Chat);
             }
             catch (Exception ex)
@@ -71,10 +71,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Chat = await ChatRepository.GetById(id);
+                var Chat = await chatRepository.GetById(id);
                 if (Chat == null)
                     return NotFound("Чата с таким id не существует");
-                await ChatRepository.Delete(Chat);
+                await chatRepository.Delete(Chat);
                 return Ok();
             }
             catch (Exception ex)

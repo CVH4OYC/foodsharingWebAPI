@@ -9,11 +9,11 @@ namespace FoodsharingWebAPI.Controllers
     [ApiController]
     public class OrganizationController : ControllerBase
     {
-        private readonly IRepository<Organization> OrganizationRepository;
+        private readonly IRepository<Organization> organizationRepository;
         private readonly ILogger<OrganizationController> logger;
-        public OrganizationController(IRepository<Organization> OrganizationRepository, ILogger<OrganizationController> logger)
+        public OrganizationController(IRepository<Organization> organizationRepository, ILogger<OrganizationController> logger)
         {
-            this.OrganizationRepository = OrganizationRepository;
+            this.organizationRepository = organizationRepository;
             this.logger = logger;
         }
         [HttpGet]
@@ -21,7 +21,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Organizations = await OrganizationRepository.GetAll();
+                var Organizations = await organizationRepository.GetAll();
                 if (Organizations != null)
                     return Ok(Organizations);
                 else
@@ -38,7 +38,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Organization = await OrganizationRepository.GetById(id);
+                var Organization = await organizationRepository.GetById(id);
                 if (Organization != null)
                     return Ok(Organization);
                 else
@@ -57,7 +57,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await OrganizationRepository.Add(Organization);
+                await organizationRepository.Add(Organization);
                 return CreatedAtAction(nameof(GetOrganization), new { id = Organization.Id }, Organization);
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace FoodsharingWebAPI.Controllers
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Organization = await OrganizationRepository.GetById(id);
+                var Organization = await organizationRepository.GetById(id);
                 if (Organization == null)
                     return NotFound("Организации с таким id не существует");
 
@@ -89,7 +89,7 @@ namespace FoodsharingWebAPI.Controllers
                     Organization.Description = OrganizationUpdate.Description;
                 Organization.AddressId = OrganizationUpdate.AddressId;
 
-                await OrganizationRepository.Update(Organization);
+                await organizationRepository.Update(Organization);
                 return Ok();
             }
             catch (Exception ex)
@@ -103,10 +103,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Organization = await OrganizationRepository.GetById(id);
+                var Organization = await organizationRepository.GetById(id);
                 if (Organization == null)
                     return NotFound("Организации с таким id не существует");
-                await OrganizationRepository.Delete(Organization);
+                await organizationRepository.Delete(Organization);
                 return Ok();
             }
             catch (Exception ex)
