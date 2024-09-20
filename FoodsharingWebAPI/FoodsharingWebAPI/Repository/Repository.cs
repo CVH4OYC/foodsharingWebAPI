@@ -13,23 +13,23 @@ namespace FoodsharingWebAPI.Repository
         {
             this.context = context;
         }
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await context.Set<T>().ToListAsync(); ;
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await context.FindAsync<T>(id);
         }
 
-        public async Task Add(T entity)
+        public async Task AddAsync(T entity)
         {
             await context.AddAsync(entity);
             await context.SaveChangesAsync();
         }
 
-        public async Task Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             // прикрепляем к контексту без отслеживания изменений
             context.Set<T>().Attach(entity);
@@ -38,17 +38,17 @@ namespace FoodsharingWebAPI.Repository
             await context.SaveChangesAsync();
         }
 
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             context.Remove(entity);
             await context.SaveChangesAsync();
         }
-        public async Task<IEnumerable<T>> GetWithInclude(params Expression<Func<T, object>>[] includeProperties)
+        public async Task<IEnumerable<T>> GetWithIncludeAsync(params Expression<Func<T, object>>[] includeProperties)
         {
             return await Include(includeProperties).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetWithInclude(Func<T, bool> predicate,
+        public async Task<IEnumerable<T>> GetWithIncludeAsync(Func<T, bool> predicate,
             params Expression<Func<T, object>>[] includeProperties)
         {
             var query = Include(includeProperties);

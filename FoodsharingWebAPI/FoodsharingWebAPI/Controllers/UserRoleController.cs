@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<UserRole>>> GetAll()
+        public async Task<ActionResult<List<UserRole>>> GetAllAsync()
         {
             try
             {
-                var UserRoles = await userRoleRepository.GetAll();
+                var UserRoles = await userRoleRepository.GetAllAsync();
                 if (UserRoles != null)
                     return Ok(UserRoles);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserRole>> GetUserRole(int id)
+        public async Task<ActionResult<UserRole>> GetUserRoleAsync(int id)
         {
             try
             {
-                var UserRole = await userRoleRepository.GetById(id);
+                var UserRole = await userRoleRepository.GetByIdAsync(id);
                 if (UserRole != null)
                     return Ok(UserRole);
                 else
@@ -50,32 +50,15 @@ namespace FoodsharingWebAPI.Controllers
                 return StatusCode(500, "Ошибка при получении записи \"Роль-пользователь\"");
             }
         }
-        [HttpGet("Detail")]
-        public async Task<ActionResult<List<UserRole>>> GetAllDetail()
-        {
-            try
-            {
-                var UserRoles = await userRoleRepository.GetWithInclude(ur => ur.Role, ur => ur.User);
-                if (UserRoles != null)
-                    return Ok(UserRoles);
-                else
-                    return NotFound("Ещё ни один пользователь не имеет роли");
-            }
-            catch (Exception ex)
-            {
-                logger.LogError($"Ошибка при получении списка UserRole: {ex.Message}");
-                return StatusCode(500, "Ошибка при получении списка ролей пользователей");
-            }
-        }
         [HttpPost]
-        public async Task<IActionResult> CreateUserRole([FromBody] UserRole UserRole)
+        public async Task<IActionResult> CreateUserRoleAsync([FromBody] UserRole UserRole)
         {
             if (UserRole == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await userRoleRepository.Add(UserRole);
-                return CreatedAtAction(nameof(GetUserRole), new { id = UserRole.Id }, UserRole);
+                await userRoleRepository.AddAsync(UserRole);
+                return CreatedAtAction(nameof(GetUserRoleAsync), new { id = UserRole.Id }, UserRole);
             }
             catch (Exception ex)
             {
@@ -84,14 +67,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUserRole(int id)
+        public async Task<IActionResult> DeleteUserRoleAsync(int id)
         {
             try
             {
-                var UserRole = await userRoleRepository.GetById(id);
+                var UserRole = await userRoleRepository.GetByIdAsync(id);
                 if (UserRole == null)
                     return NotFound("Записи \"Роль-пользователь\" с таким id не существует");
-                await userRoleRepository.Delete(UserRole);
+                await userRoleRepository.DeleteAsync(UserRole);
                 return Ok();
             }
             catch (Exception ex)

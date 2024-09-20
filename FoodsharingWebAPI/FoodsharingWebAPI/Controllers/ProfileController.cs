@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Profile>>> GetAll()
+        public async Task<ActionResult<List<Profile>>> GetAllAsync()
         {
             try
             {
-                var Profiles = await profileRepository.GetAll();
+                var Profiles = await profileRepository.GetAllAsync();
                 if (Profiles != null)
                     return Ok(Profiles);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Profile>> GetProfile(int id)
+        public async Task<ActionResult<Profile>> GetProfileAsync(int id)
         {
             try
             {
-                var Profile = await profileRepository.GetById(id);
+                var Profile = await profileRepository.GetByIdAsync(id);
                 if (Profile != null)
                     return Ok(Profile);
                 else
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateProfile([FromBody] Profile Profile)
+        public async Task<IActionResult> CreateProfileAsync([FromBody] Profile Profile)
         {
             if (Profile == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await profileRepository.Add(Profile);
-                return CreatedAtAction(nameof(GetProfile), new { id = Profile.Id }, Profile);
+                await profileRepository.AddAsync(Profile);
+                return CreatedAtAction(nameof(GetProfileAsync), new { id = Profile.Id }, Profile);
             }
             catch (Exception ex)
             {
@@ -67,13 +67,13 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProfile(int id, [FromBody] Profile ProfileUpdate)
+        public async Task<IActionResult> UpdateProfileAsync(int id, [FromBody] Profile ProfileUpdate)
         {
             if (ProfileUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Profile = await profileRepository.GetById(id);
+                var Profile = await profileRepository.GetByIdAsync(id);
                 if (Profile == null)
                     return NotFound("Профиля с таким id не существует");
                 Profile.FirstName = ProfileUpdate.FirstName;
@@ -84,7 +84,7 @@ namespace FoodsharingWebAPI.Controllers
                 if (!string.IsNullOrEmpty(ProfileUpdate.Bio))
                     Profile.Bio = ProfileUpdate.Bio;
 
-                await profileRepository.Update(Profile);
+                await profileRepository.UpdateAsync(Profile);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,14 +94,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProfile(int id)
+        public async Task<IActionResult> DeleteProfileAsync(int id)
         {
             try
             {
-                var Profile = await profileRepository.GetById(id);
+                var Profile = await profileRepository.GetByIdAsync(id);
                 if (Profile == null)
                     return NotFound("Профиля с таким id не существует");
-                await profileRepository.Delete(Profile);
+                await profileRepository.DeleteAsync(Profile);
                 return Ok();
             }
             catch (Exception ex)

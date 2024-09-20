@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Address>>> GetAll()
+        public async Task<ActionResult<List<Address>>> GetAllAsync()
         {
             try
             {
-                var Addresss = await addressRepository.GetAll();
+                var Addresss = await addressRepository.GetAllAsync();
                 if (Addresss != null)
                     return Ok(Addresss);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Address>> GetAddress(int id)
+        public async Task<ActionResult<Address>> GetAddressAsync(int id)
         {
             try
             {
-                var Address = await addressRepository.GetById(id);
+                var Address = await addressRepository.GetByIdAsync(id);
                 if (Address != null)
                     return Ok(Address);
                 else
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAddress([FromBody] Address Address)
+        public async Task<IActionResult> CreateAddressAsync([FromBody] Address Address)
         {
             if (Address == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await addressRepository.Add(Address);
-                return CreatedAtAction(nameof(GetAddress), new { id = Address.Id }, Address);
+                await addressRepository.AddAsync(Address);
+                return CreatedAtAction(nameof(GetAddressAsync), new { id = Address.Id }, Address);
             }
             catch (Exception ex)
             {
@@ -67,13 +67,13 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAddress(int id, [FromBody] Address AddressUpdate)
+        public async Task<IActionResult> UpdateAddressAsync(int id, [FromBody] Address AddressUpdate)
         {
             if (AddressUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Address = await addressRepository.GetById(id);
+                var Address = await addressRepository.GetByIdAsync(id);
                 if (Address == null)
                     return NotFound("Адрес с таким id не существует");
                 
@@ -86,7 +86,7 @@ namespace FoodsharingWebAPI.Controllers
                 if (!string.IsNullOrEmpty(AddressUpdate.House))
                     Address.House = AddressUpdate.House;
 
-                await addressRepository.Update(Address);
+                await addressRepository.UpdateAsync(Address);
                 return Ok();
             }
             catch (Exception ex)
@@ -96,14 +96,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAddress(int id)
+        public async Task<IActionResult> DeleteAddressAsync(int id)
         {
             try
             {
-                var Address = await addressRepository.GetById(id);
+                var Address = await addressRepository.GetByIdAsync(id);
                 if (Address == null)
                     return NotFound("Адрес с таким id не существует");
-                await addressRepository.Delete(Address);
+                await addressRepository.DeleteAsync(Address);
                 return Ok();
             }
             catch (Exception ex)

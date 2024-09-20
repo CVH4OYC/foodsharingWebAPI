@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Organization>>> GetAll()
+        public async Task<ActionResult<List<Organization>>> GetAllAsync()
         {
             try
             {
-                var Organizations = await organizationRepository.GetAll();
+                var Organizations = await organizationRepository.GetAllAsync();
                 if (Organizations != null)
                     return Ok(Organizations);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Organization>> GetOrganization(int id)
+        public async Task<ActionResult<Organization>> GetOrganizationAsync(int id)
         {
             try
             {
-                var Organization = await organizationRepository.GetById(id);
+                var Organization = await organizationRepository.GetByIdAsync(id);
                 if (Organization != null)
                     return Ok(Organization);
                 else
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateOrganization([FromBody] Organization Organization)
+        public async Task<IActionResult> CreateOrganizationAsync([FromBody] Organization Organization)
         {
             if (Organization == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await organizationRepository.Add(Organization);
-                return CreatedAtAction(nameof(GetOrganization), new { id = Organization.Id }, Organization);
+                await organizationRepository.AddAsync(Organization);
+                return CreatedAtAction(nameof(GetOrganizationAsync), new { id = Organization.Id }, Organization);
             }
             catch (Exception ex)
             {
@@ -67,13 +67,13 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrganization(int id, [FromBody] Organization OrganizationUpdate)
+        public async Task<IActionResult> UpdateOrganizationAsync(int id, [FromBody] Organization OrganizationUpdate)
         {
             if (OrganizationUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Organization = await organizationRepository.GetById(id);
+                var Organization = await organizationRepository.GetByIdAsync(id);
                 if (Organization == null)
                     return NotFound("Организации с таким id не существует");
 
@@ -89,7 +89,7 @@ namespace FoodsharingWebAPI.Controllers
                     Organization.Description = OrganizationUpdate.Description;
                 Organization.AddressId = OrganizationUpdate.AddressId;
 
-                await organizationRepository.Update(Organization);
+                await organizationRepository.UpdateAsync(Organization);
                 return Ok();
             }
             catch (Exception ex)
@@ -99,14 +99,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrganization(int id)
+        public async Task<IActionResult> DeleteOrganizationAsync(int id)
         {
             try
             {
-                var Organization = await organizationRepository.GetById(id);
+                var Organization = await organizationRepository.GetByIdAsync(id);
                 if (Organization == null)
                     return NotFound("Организации с таким id не существует");
-                await organizationRepository.Delete(Organization);
+                await organizationRepository.DeleteAsync(Organization);
                 return Ok();
             }
             catch (Exception ex)
