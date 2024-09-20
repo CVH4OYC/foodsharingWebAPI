@@ -18,11 +18,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAll()
+        public async Task<ActionResult<List<User>>> GetAllAsync()
         {
             try
             {
-                var users = await userRepository.GetAll();
+                var users = await userRepository.GetAllAsync();
                 if (users != null)
                     return Ok(users);
                 else
@@ -35,11 +35,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<User>> GetUserAsync(int id)
         {
             try
             {
-                var user = await userRepository.GetById(id);
+                var user = await userRepository.GetByIdAsync(id);
                 if (user != null)
                     return Ok(user);
                 else
@@ -52,14 +52,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] User user)
+        public async Task<IActionResult> CreateUserAsync([FromBody] User user)
         {
             if (user == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await userRepository.Add(user);
-                return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+                await userRepository.AddAsync(user);
+                return CreatedAtAction(nameof(GetUserAsync), new { id = user.Id }, user);
             }
             catch (Exception ex)
             {
@@ -68,13 +68,13 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] User userUpdate)
+        public async Task<IActionResult> UpdateUserAsync(int id, [FromBody] User userUpdate)
         {
             if (userUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var user = await userRepository.GetById(id);
+                var user = await userRepository.GetByIdAsync(id);
                 if (user == null)
                     return NotFound("Пользователя с таким id не существует");
                 if (!string.IsNullOrEmpty(userUpdate.UserName))
@@ -82,7 +82,7 @@ namespace FoodsharingWebAPI.Controllers
                 if (!string.IsNullOrEmpty(userUpdate.Password)) // это временно, потом нужно хеш записывать
                     user.Password = userUpdate.Password;
 
-                await userRepository.Update(user);
+                await userRepository.UpdateAsync(user);
                 return Ok();
             }
             catch (Exception ex)
@@ -92,14 +92,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteUserAsync(int id)
         {
             try
             {
-                var user = await userRepository.GetById(id);
+                var user = await userRepository.GetByIdAsync(id);
                 if (user == null)
                     return NotFound("Пользователя с таким id не существует");
-                await userRepository.Delete(user);
+                await userRepository.DeleteAsync(user);
                 return Ok();
             }
             catch (Exception ex)

@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Announcement>>> GetAll()
+        public async Task<ActionResult<List<Announcement>>> GetAllAsync()
         {
             try
             {
-                var Announcements = await announcementRepository.GetAll();
+                var Announcements = await announcementRepository.GetAllAsync();
                 if (Announcements != null)
                     return Ok(Announcements);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Announcement>> GetAnnouncement(int id)
+        public async Task<ActionResult<Announcement>> GetAnnouncementAsync(int id)
         {
             try
             {
-                var Announcement = await announcementRepository.GetById(id);
+                var Announcement = await announcementRepository.GetByIdAsync(id);
                 if (Announcement != null)
                     return Ok(Announcement);
                 else
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAnnouncement([FromBody] Announcement Announcement)
+        public async Task<IActionResult> CreateAnnouncementAsync([FromBody] Announcement Announcement)
         {
             if (Announcement == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await announcementRepository.Add(Announcement);
-                return CreatedAtAction(nameof(GetAnnouncement), new { id = Announcement.Id }, Announcement);
+                await announcementRepository.AddAsync(Announcement);
+                return CreatedAtAction(nameof(GetAnnouncementAsync), new { id = Announcement.Id }, Announcement);
             }
             catch (Exception ex)
             {
@@ -67,13 +67,13 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAnnouncement(int id, [FromBody] Announcement AnnouncementUpdate)
+        public async Task<IActionResult> UpdateAnnouncementAsync(int id, [FromBody] Announcement AnnouncementUpdate)
         {
             if (AnnouncementUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Announcement = await announcementRepository.GetById(id);
+                var Announcement = await announcementRepository.GetByIdAsync(id);
                 if (Announcement == null)
                     return NotFound("Объявления с таким id не существует");
 
@@ -87,7 +87,7 @@ namespace FoodsharingWebAPI.Controllers
                 Announcement.CategoryId = AnnouncementUpdate.CategoryId;
                 Announcement.ExpirationDate = AnnouncementUpdate.ExpirationDate;
 
-                await announcementRepository.Update(Announcement);
+                await announcementRepository.UpdateAsync(Announcement);
                 return Ok();
             }
             catch (Exception ex)
@@ -97,14 +97,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAnnouncement(int id)
+        public async Task<IActionResult> DeleteAnnouncementAsync(int id)
         {
             try
             {
-                var Announcement = await announcementRepository.GetById(id);
+                var Announcement = await announcementRepository.GetByIdAsync(id);
                 if (Announcement == null)
                     return NotFound("Объявления с таким id не существует");
-                await announcementRepository.Delete(Announcement);
+                await announcementRepository.DeleteAsync(Announcement);
                 return Ok();
             }
             catch (Exception ex)

@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<MessageStatus>>> GetAll()
+        public async Task<ActionResult<List<MessageStatus>>> GetAllAsync()
         {
             try
             {
-                var MessageStatuss = await messageStatusRepository.GetAll();
+                var MessageStatuss = await messageStatusRepository.GetAllAsync();
                 if (MessageStatuss != null)
                     return Ok(MessageStatuss);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<MessageStatus>> GetMessageStatus(int id)
+        public async Task<ActionResult<MessageStatus>> GetMessageStatusAsync(int id)
         {
             try
             {
-                var MessageStatus = await messageStatusRepository.GetById(id);
+                var MessageStatus = await messageStatusRepository.GetByIdAsync(id);
                 if (MessageStatus != null)
                     return Ok(MessageStatus);
                 else
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateMessageStatus([FromBody] MessageStatus MessageStatus)
+        public async Task<IActionResult> CreateMessageStatusAsync([FromBody] MessageStatus MessageStatus)
         {
             if (MessageStatus == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await messageStatusRepository.Add(MessageStatus);
-                return CreatedAtAction(nameof(GetMessageStatus), new { id = MessageStatus.Id }, MessageStatus);
+                await messageStatusRepository.AddAsync(MessageStatus);
+                return CreatedAtAction(nameof(GetMessageStatusAsync), new { id = MessageStatus.Id }, MessageStatus);
             }
             catch (Exception ex)
             {
@@ -67,20 +67,20 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMessageStatus(int id, [FromBody] MessageStatus MessageStatusUpdate)
+        public async Task<IActionResult> UpdateMessageStatusAsync(int id, [FromBody] MessageStatus MessageStatusUpdate)
         {
             if (MessageStatusUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var MessageStatus = await messageStatusRepository.GetById(id);
+                var MessageStatus = await messageStatusRepository.GetByIdAsync(id);
                 if (MessageStatus == null)
                     return NotFound("Статуса сообщения с таким id не существует");
 
                 if (!string.IsNullOrEmpty(MessageStatusUpdate.Name))
                     MessageStatus.Name = MessageStatusUpdate.Name;
 
-                await messageStatusRepository.Update(MessageStatus);
+                await messageStatusRepository.UpdateAsync(MessageStatus);
                 return Ok();
             }
             catch (Exception ex)
@@ -90,14 +90,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMessageStatus(int id)
+        public async Task<IActionResult> DeleteMessageStatusAsync(int id)
         {
             try
             {
-                var MessageStatus = await messageStatusRepository.GetById(id);
+                var MessageStatus = await messageStatusRepository.GetByIdAsync(id);
                 if (MessageStatus == null)
                     return NotFound("Статуса сообщения с таким id не существует");
-                await messageStatusRepository.Delete(MessageStatus);
+                await messageStatusRepository.DeleteAsync(MessageStatus);
                 return Ok();
             }
             catch (Exception ex)

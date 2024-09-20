@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Representative>>> GetAll()
+        public async Task<ActionResult<List<Representative>>> GetAllAsync()
         {
             try
             {
-                var Representatives = await representativeRepository.GetAll();
+                var Representatives = await representativeRepository.GetAllAsync();
                 if (Representatives != null)
                     return Ok(Representatives);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Representative>> GetRepresentative(int id)
+        public async Task<ActionResult<Representative>> GetRepresentativeAsync(int id)
         {
             try
             {
-                var Representative = await representativeRepository.GetById(id);
+                var Representative = await representativeRepository.GetByIdAsync(id);
                 if (Representative != null)
                     return Ok(Representative);
                 else
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateRepresentative([FromBody] Representative Representative)
+        public async Task<IActionResult> CreateRepresentativeAsync([FromBody] Representative Representative)
         {
             if (Representative == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await representativeRepository.Add(Representative);
-                return CreatedAtAction(nameof(GetRepresentative), new { id = Representative.Id }, Representative);
+                await representativeRepository.AddAsync(Representative);
+                return CreatedAtAction(nameof(GetRepresentativeAsync), new { id = Representative.Id }, Representative);
             }
             catch (Exception ex)
             {
@@ -68,14 +68,14 @@ namespace FoodsharingWebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRepresentative(int id)
+        public async Task<IActionResult> DeleteRepresentativeAsync(int id)
         {
             try
             {
-                var Representative = await representativeRepository.GetById(id);
+                var Representative = await representativeRepository.GetByIdAsync(id);
                 if (Representative == null)
                     return NotFound("Представителя организации с таким id не существует");
-                await representativeRepository.Delete(Representative);
+                await representativeRepository.DeleteAsync(Representative);
                 return Ok();
             }
             catch (Exception ex)

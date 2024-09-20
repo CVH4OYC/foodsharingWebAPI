@@ -17,11 +17,11 @@ namespace FoodsharingWebAPI.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<List<TransactionStatus>>> GetAll()
+        public async Task<ActionResult<List<TransactionStatus>>> GetAllAsync()
         {
             try
             {
-                var TransactionStatuss = await transactionStatusRepository.GetAll();
+                var TransactionStatuss = await transactionStatusRepository.GetAllAsync();
                 if (TransactionStatuss != null)
                     return Ok(TransactionStatuss);
                 else
@@ -34,11 +34,11 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<TransactionStatus>> GetTransactionStatus(int id)
+        public async Task<ActionResult<TransactionStatus>> GetTransactionStatusAsync(int id)
         {
             try
             {
-                var TransactionStatus = await transactionStatusRepository.GetById(id);
+                var TransactionStatus = await transactionStatusRepository.GetByIdAsync(id);
                 if (TransactionStatus != null)
                     return Ok(TransactionStatus);
                 else
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTransactionStatus([FromBody] TransactionStatus TransactionStatus)
+        public async Task<IActionResult> CreateTransactionStatusAsync([FromBody] TransactionStatus TransactionStatus)
         {
             if (TransactionStatus == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await transactionStatusRepository.Add(TransactionStatus);
-                return CreatedAtAction(nameof(GetTransactionStatus), new { id = TransactionStatus.Id }, TransactionStatus);
+                await transactionStatusRepository.AddAsync(TransactionStatus);
+                return CreatedAtAction(nameof(GetTransactionStatusAsync), new { id = TransactionStatus.Id }, TransactionStatus);
             }
             catch (Exception ex)
             {
@@ -67,18 +67,18 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTransactionStatus(int id, [FromBody] TransactionStatus TransactionStatusUpdate)
+        public async Task<IActionResult> UpdateTransactionStatusAsync(int id, [FromBody] TransactionStatus TransactionStatusUpdate)
         {
             if (TransactionStatusUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var TransactionStatus = await transactionStatusRepository.GetById(id);
+                var TransactionStatus = await transactionStatusRepository.GetByIdAsync(id);
                 if (TransactionStatus == null)
                     return NotFound("Статуса транзакции с таким id не существует");
                 if (!string.IsNullOrEmpty(TransactionStatusUpdate.Name))
                     TransactionStatus.Name = TransactionStatusUpdate.Name;
-                await transactionStatusRepository.Update(TransactionStatus);
+                await transactionStatusRepository.UpdateAsync(TransactionStatus);
                 return Ok();
             }
             catch (Exception ex)
@@ -88,14 +88,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTransactionStatus(int id)
+        public async Task<IActionResult> DeleteTransactionStatusAsync(int id)
         {
             try
             {
-                var TransactionStatus = await transactionStatusRepository.GetById(id);
+                var TransactionStatus = await transactionStatusRepository.GetByIdAsync(id);
                 if (TransactionStatus == null)
                     return NotFound("Статуса транзакции с таким id не существует");
-                await transactionStatusRepository.Delete(TransactionStatus);
+                await transactionStatusRepository.DeleteAsync(TransactionStatus);
                 return Ok();
             }
             catch (Exception ex)
