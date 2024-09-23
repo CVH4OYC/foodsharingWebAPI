@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Transactions = await transactionRepository.GetAllAsync();
-                if (Transactions != null)
-                    return Ok(Transactions);
+                var transactions = await transactionRepository.GetAllAsync();
+                if (transactions != null)
+                    return Ok(transactions);
                 else
                     return NotFound("Транзакций не существует");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Transaction = await transactionRepository.GetByIdAsync(id);
-                if (Transaction != null)
-                    return Ok(Transaction);
+                var transaction = await transactionRepository.GetByIdAsync(id);
+                if (transaction != null)
+                    return Ok(transaction);
                 else
                     return NotFound("Транзакция с заданным id не найдена");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTransactionAsync([FromBody] Transaction Transaction)
+        public async Task<IActionResult> CreateTransactionAsync([FromBody] Transaction transaction)
         {
-            if (Transaction == null)
+            if (transaction == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await transactionRepository.AddAsync(Transaction);
-                return CreatedAtAction(nameof(GetTransactionAsync), new { id = Transaction.Id }, Transaction);
+                await transactionRepository.AddAsync(transaction);
+                return CreatedAtAction(nameof(GetTransactionAsync), new { id = transaction.Id }, transaction);
             }
             catch (Exception ex)
             {
@@ -66,21 +66,14 @@ namespace FoodsharingWebAPI.Controllers
                 return StatusCode(500, "Ошибка при создании транзакции");
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTransactionAsync(int id, [FromBody] Transaction TransactionUpdate)
+        [HttpPut]
+        public async Task<IActionResult> UpdateTransactionAsync([FromBody] Transaction transactionUpdate)
         {
-            if (TransactionUpdate == null)
+            if (transactionUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Transaction = await transactionRepository.GetByIdAsync(id);
-                if (Transaction == null)
-                    return NotFound("Транзакции с таким id не существует");
-
-                Transaction.StatusId = TransactionUpdate.StatusId; // у транзакции из внешних ключей может меняться толкьо статус
-                Transaction.TransactionDate = TransactionUpdate.TransactionDate;
-
-                await transactionRepository.UpdateAsync(Transaction);
+                await transactionRepository.UpdateAsync(transactionUpdate);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,10 +87,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Transaction = await transactionRepository.GetByIdAsync(id);
-                if (Transaction == null)
+                var transaction = await transactionRepository.GetByIdAsync(id);
+                if (transaction == null)
                     return NotFound("Транзакции с таким id не существует");
-                await transactionRepository.DeleteAsync(Transaction);
+                await transactionRepository.DeleteAsync(transaction);
                 return Ok();
             }
             catch (Exception ex)

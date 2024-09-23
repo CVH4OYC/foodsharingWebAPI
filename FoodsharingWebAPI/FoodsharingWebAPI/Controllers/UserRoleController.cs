@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var UserRoles = await userRoleRepository.GetAllAsync();
-                if (UserRoles != null)
-                    return Ok(UserRoles);
+                var userRoles = await userRoleRepository.GetAllAsync();
+                if (userRoles != null)
+                    return Ok(userRoles);
                 else
                     return NotFound("Ещё ни один пользователь не имеет роли");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var UserRole = await userRoleRepository.GetByIdAsync(id);
-                if (UserRole != null)
-                    return Ok(UserRole);
+                var userRole = await userRoleRepository.GetByIdAsync(id);
+                if (userRole != null)
+                    return Ok(userRole);
                 else
                     return NotFound("Запись о роли пользователя с заданным id не найдена");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateUserRoleAsync([FromBody] UserRole UserRole)
+        public async Task<IActionResult> CreateUserRoleAsync([FromBody] UserRole userRole)
         {
-            if (UserRole == null)
+            if (userRole == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await userRoleRepository.AddAsync(UserRole);
-                return CreatedAtAction(nameof(GetUserRoleAsync), new { id = UserRole.Id }, UserRole);
+                await userRoleRepository.AddAsync(userRole);
+                return CreatedAtAction(nameof(GetUserRoleAsync), new { id = userRole.Id }, userRole);
             }
             catch (Exception ex)
             {
@@ -71,10 +71,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var UserRole = await userRoleRepository.GetByIdAsync(id);
-                if (UserRole == null)
+                var userRole = await userRoleRepository.GetByIdAsync(id);
+                if (userRole == null)
                     return NotFound("Записи \"Роль-пользователь\" с таким id не существует");
-                await userRoleRepository.DeleteAsync(UserRole);
+                await userRoleRepository.DeleteAsync(userRole);
                 return Ok();
             }
             catch (Exception ex)

@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Categorys = await categoryRepository.GetAllAsync();
-                if (Categorys != null)
-                    return Ok(Categorys);
+                var categorys = await categoryRepository.GetAllAsync();
+                if (categorys != null)
+                    return Ok(categorys);
                 else
                     return NotFound("Категорий не существует");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Category = await categoryRepository.GetByIdAsync(id);
-                if (Category != null)
-                    return Ok(Category);
+                var category = await categoryRepository.GetByIdAsync(id);
+                if (category != null)
+                    return Ok(category);
                 else
                     return NotFound("Категория с заданным id не найдена");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateCategoryAsync([FromBody] Category Category)
+        public async Task<IActionResult> CreateCategoryAsync([FromBody] Category category)
         {
-            if (Category == null)
+            if (category == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await categoryRepository.AddAsync(Category);
-                return CreatedAtAction(nameof(GetCategoryAsync), new { id = Category.Id }, Category);
+                await categoryRepository.AddAsync(category);
+                return CreatedAtAction(nameof(GetCategoryAsync), new { id = category.Id }, category);
             }
             catch (Exception ex)
             {
@@ -66,21 +66,14 @@ namespace FoodsharingWebAPI.Controllers
                 return StatusCode(500, "Ошибка при создании категории");
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCategoryAsync(int id, [FromBody] Category CategoryUpdate)
+        [HttpPut]
+        public async Task<IActionResult> UpdateCategoryAsync([FromBody] Category categoryUpdate)
         {
-            if (CategoryUpdate == null)
+            if (categoryUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Category = await categoryRepository.GetByIdAsync(id);
-                if (Category == null)
-                    return NotFound("Категории с таким id не существует");
-                
-                if(!string.IsNullOrEmpty(CategoryUpdate.Name))
-                    Category.Name = CategoryUpdate.Name;
-
-                await categoryRepository.UpdateAsync(Category);
+                await categoryRepository.UpdateAsync(categoryUpdate);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,10 +87,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Category = await categoryRepository.GetByIdAsync(id);
-                if (Category == null)
+                var category = await categoryRepository.GetByIdAsync(id);
+                if (category == null)
                     return NotFound("Категории с таким id не существует");
-                await categoryRepository.DeleteAsync(Category);
+                await categoryRepository.DeleteAsync(category);
                 return Ok();
             }
             catch (Exception ex)

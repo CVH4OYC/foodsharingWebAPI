@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Roles = await roleRepository.GetAllAsync();
-                if (Roles != null)
-                    return Ok(Roles);
+                var roles = await roleRepository.GetAllAsync();
+                if (roles != null)
+                    return Ok(roles);
                 else
                     return NotFound("Ролей не существует");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Role = await roleRepository.GetByIdAsync(id);
-                if (Role != null)
-                    return Ok(Role);
+                var role = await roleRepository.GetByIdAsync(id);
+                if (role != null)
+                    return Ok(role);
                 else
                     return NotFound("Роль с заданным id не найдена");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateRoleAsync([FromBody] Role Role)
+        public async Task<IActionResult> CreateRoleAsync([FromBody] Role role)
         {
-            if (Role == null)
+            if (role == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await roleRepository.AddAsync(Role);
-                return CreatedAtAction(nameof(GetRoleAsync), new { id = Role.Id }, Role);
+                await roleRepository.AddAsync(role);
+                return CreatedAtAction(nameof(GetRoleAsync), new { id = role.Id }, role);
             }
             catch (Exception ex)
             {
@@ -66,21 +66,14 @@ namespace FoodsharingWebAPI.Controllers
                 return StatusCode(500, "Ошибка при создании роли");
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRoleAsync(int id, [FromBody] Role RoleUpdate)
+        [HttpPut]
+        public async Task<IActionResult> UpdateRoleAsync([FromBody] Role roleUpdate)
         {
-            if (RoleUpdate == null)
+            if (roleUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Role = await roleRepository.GetByIdAsync(id);
-                if (Role == null)
-                    return NotFound("Роли с таким id не существует");
-
-                if(!string.IsNullOrEmpty(RoleUpdate.Name))
-                    Role.Name = RoleUpdate.Name;
-
-                await roleRepository.UpdateAsync(Role);
+                await roleRepository.UpdateAsync(roleUpdate);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,10 +87,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Role = await roleRepository.GetByIdAsync(id);
-                if (Role == null)
+                var role = await roleRepository.GetByIdAsync(id);
+                if (role == null)
                     return NotFound("Роли с таким id не существует");
-                await roleRepository.DeleteAsync(Role);
+                await roleRepository.DeleteAsync(role);
                 return Ok();
             }
             catch (Exception ex)

@@ -1,4 +1,4 @@
-﻿using FoodsharingWebAPI.Interfaces;
+﻿﻿using FoodsharingWebAPI.Interfaces;
 using FoodsharingWebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +31,7 @@ namespace FoodsharingWebAPI.Controllers
             catch (Exception ex)
             {
                 logger.LogError($"Ошибка при получении списка User: {ex.Message}");
-                return StatusCode(500,"Ошибка при получении списка пользователей");
+                return StatusCode(500, "Ошибка при получении списка пользователей");
             }
         }
         [HttpGet("{id}")]
@@ -45,10 +45,10 @@ namespace FoodsharingWebAPI.Controllers
                 else
                     return NotFound("Пользователь с заданным id не найден");
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 logger.LogError($"Ошибка при получении пользователя с id = {id}: {ex.Message}");
-                return StatusCode(500,"Ошибка при получении пользователя по id");
+                return StatusCode(500, "Ошибка при получении пользователя по id");
             }
         }
         [HttpPost]
@@ -64,25 +64,17 @@ namespace FoodsharingWebAPI.Controllers
             catch (Exception ex)
             {
                 logger.LogError($"Ошибка при добавлении User в БД: {ex.Message}");
-                return StatusCode(500,"Ошибка при создании пользователя");
+                return StatusCode(500, "Ошибка при создании пользователя");
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUserAsync(int id, [FromBody] User userUpdate)
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser([FromBody] User userUpdate)
         {
             if (userUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var user = await userRepository.GetByIdAsync(id);
-                if (user == null)
-                    return NotFound("Пользователя с таким id не существует");
-                if (!string.IsNullOrEmpty(userUpdate.UserName))
-                    user.UserName = userUpdate.UserName;
-                if (!string.IsNullOrEmpty(userUpdate.Password)) // это временно, потом нужно хеш записывать
-                    user.Password = userUpdate.Password;
-
-                await userRepository.UpdateAsync(user);
+                await userRepository.UpdateAsync(userUpdate);
                 return Ok();
             }
             catch (Exception ex)
@@ -92,7 +84,7 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUserAsync(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
             try
             {

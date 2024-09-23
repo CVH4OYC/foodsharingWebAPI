@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Chats = await chatRepository.GetAllAsync();
-                if (Chats != null)
-                    return Ok(Chats);
+                var chats = await chatRepository.GetAllAsync();
+                if (chats != null)
+                    return Ok(chats);
                 else
                     return NotFound("Чатов не существует");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Chat = await chatRepository.GetByIdAsync(id);
-                if (Chat != null)
-                    return Ok(Chat);
+                var chat = await chatRepository.GetByIdAsync(id);
+                if (chat != null)
+                    return Ok(chat);
                 else
                     return NotFound("Чат с заданным id не найден");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateChatAsync([FromBody] Chat Chat)
+        public async Task<IActionResult> CreateChatAsync([FromBody] Chat chat)
         {
-            if (Chat == null)
+            if (chat == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await chatRepository.AddAsync(Chat);
-                return CreatedAtAction(nameof(GetChatAsync), new { id = Chat.Id }, Chat);
+                await chatRepository.AddAsync(chat);
+                return CreatedAtAction(nameof(GetChatAsync), new { id = chat.Id }, chat);
             }
             catch (Exception ex)
             {
@@ -71,10 +71,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Chat = await chatRepository.GetByIdAsync(id);
-                if (Chat == null)
+                var chat = await chatRepository.GetByIdAsync(id);
+                if (chat == null)
                     return NotFound("Чата с таким id не существует");
-                await chatRepository.DeleteAsync(Chat);
+                await chatRepository.DeleteAsync(chat);
                 return Ok();
             }
             catch (Exception ex)

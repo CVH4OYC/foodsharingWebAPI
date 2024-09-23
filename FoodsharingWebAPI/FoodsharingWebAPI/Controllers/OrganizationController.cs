@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Organizations = await organizationRepository.GetAllAsync();
-                if (Organizations != null)
-                    return Ok(Organizations);
+                var organizations = await organizationRepository.GetAllAsync();
+                if (organizations != null)
+                    return Ok(organizations);
                 else
                     return NotFound("Организаций не существует");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Organization = await organizationRepository.GetByIdAsync(id);
-                if (Organization != null)
-                    return Ok(Organization);
+                var organization = await organizationRepository.GetByIdAsync(id);
+                if (organization != null)
+                    return Ok(organization);
                 else
                     return NotFound("Организация с заданным id не найдена");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateOrganizationAsync([FromBody] Organization Organization)
+        public async Task<IActionResult> CreateOrganizationAsync([FromBody] Organization organization)
         {
-            if (Organization == null)
+            if (organization == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await organizationRepository.AddAsync(Organization);
-                return CreatedAtAction(nameof(GetOrganizationAsync), new { id = Organization.Id }, Organization);
+                await organizationRepository.AddAsync(organization);
+                return CreatedAtAction(nameof(GetOrganizationAsync), new { id = organization.Id }, organization);
             }
             catch (Exception ex)
             {
@@ -66,30 +66,14 @@ namespace FoodsharingWebAPI.Controllers
                 return StatusCode(500, "Ошибка при создании организации");
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrganizationAsync(int id, [FromBody] Organization OrganizationUpdate)
+        [HttpPut]
+        public async Task<IActionResult> UpdateOrganizationAsync([FromBody] Organization organizationUpdate)
         {
-            if (OrganizationUpdate == null)
+            if (organizationUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Organization = await organizationRepository.GetByIdAsync(id);
-                if (Organization == null)
-                    return NotFound("Организации с таким id не существует");
-
-                if (!string.IsNullOrEmpty(OrganizationUpdate.Name))
-                    Organization.Name = OrganizationUpdate.Name;
-                if (!string.IsNullOrEmpty(OrganizationUpdate.Phone))
-                    Organization.Phone = OrganizationUpdate.Phone;
-                if (!string.IsNullOrEmpty(OrganizationUpdate.Email))
-                    Organization.Email = OrganizationUpdate.Email;
-                if (!string.IsNullOrEmpty(OrganizationUpdate.Website))
-                    Organization.Website = OrganizationUpdate.Website;
-                if (!string.IsNullOrEmpty(OrganizationUpdate.Description))
-                    Organization.Description = OrganizationUpdate.Description;
-                Organization.AddressId = OrganizationUpdate.AddressId;
-
-                await organizationRepository.UpdateAsync(Organization);
+                await organizationRepository.UpdateAsync(organizationUpdate);
                 return Ok();
             }
             catch (Exception ex)
@@ -103,10 +87,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Organization = await organizationRepository.GetByIdAsync(id);
-                if (Organization == null)
+                var organization = await organizationRepository.GetByIdAsync(id);
+                if (organization == null)
                     return NotFound("Организации с таким id не существует");
-                await organizationRepository.DeleteAsync(Organization);
+                await organizationRepository.DeleteAsync(organization);
                 return Ok();
             }
             catch (Exception ex)

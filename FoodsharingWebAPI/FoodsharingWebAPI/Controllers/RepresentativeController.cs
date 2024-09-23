@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Representatives = await representativeRepository.GetAllAsync();
-                if (Representatives != null)
-                    return Ok(Representatives);
+                var representatives = await representativeRepository.GetAllAsync();
+                if (representatives != null)
+                    return Ok(representatives);
                 else
                     return NotFound("Представителей организаций не существует");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Representative = await representativeRepository.GetByIdAsync(id);
-                if (Representative != null)
-                    return Ok(Representative);
+                var representative = await representativeRepository.GetByIdAsync(id);
+                if (representative != null)
+                    return Ok(representative);
                 else
                     return NotFound("Представитель организации с заданным id не найден");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateRepresentativeAsync([FromBody] Representative Representative)
+        public async Task<IActionResult> CreateRepresentativeAsync([FromBody] Representative representative)
         {
-            if (Representative == null)
+            if (representative == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await representativeRepository.AddAsync(Representative);
-                return CreatedAtAction(nameof(GetRepresentativeAsync), new { id = Representative.Id }, Representative);
+                await representativeRepository.AddAsync(representative);
+                return CreatedAtAction(nameof(GetRepresentativeAsync), new { id = representative.Id }, representative);
             }
             catch (Exception ex)
             {
@@ -72,10 +72,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Representative = await representativeRepository.GetByIdAsync(id);
-                if (Representative == null)
+                var representative = await representativeRepository.GetByIdAsync(id);
+                if (representative == null)
                     return NotFound("Представителя организации с таким id не существует");
-                await representativeRepository.DeleteAsync(Representative);
+                await representativeRepository.DeleteAsync(representative);
                 return Ok();
             }
             catch (Exception ex)

@@ -14,6 +14,12 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//из-за добавления суффикса Async сломался CreatedAtAction
+//https://stackoverflow.com/questions/39459348/asp-net-core-web-api-no-route-matches-the-supplied-values
+builder.Services.AddControllersWithViews(options => { options.SuppressAsyncSuffixInActionNames = false; });
+
+
 // подлкючение к БД
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>

@@ -21,9 +21,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Messages = await messageRepository.GetAllAsync();
-                if (Messages != null)
-                    return Ok(Messages);
+                var messages = await messageRepository.GetAllAsync();
+                if (messages != null)
+                    return Ok(messages);
                 else
                     return NotFound("Сообщений не существует");
             }
@@ -38,9 +38,9 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Message = await messageRepository.GetByIdAsync(id);
-                if (Message != null)
-                    return Ok(Message);
+                var message = await messageRepository.GetByIdAsync(id);
+                if (message != null)
+                    return Ok(message);
                 else
                     return NotFound("Сообщение с заданным id не найдено");
             }
@@ -51,14 +51,14 @@ namespace FoodsharingWebAPI.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateMessageAsync([FromBody] Message Message)
+        public async Task<IActionResult> CreateMessageAsync([FromBody] Message message)
         {
-            if (Message == null)
+            if (message == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                await messageRepository.AddAsync(Message);
-                return CreatedAtAction(nameof(GetMessageAsync), new { id = Message.Id }, Message);
+                await messageRepository.AddAsync(message);
+                return CreatedAtAction(nameof(GetMessageAsync), new { id = message.Id }, message);
             }
             catch (Exception ex)
             {
@@ -66,27 +66,14 @@ namespace FoodsharingWebAPI.Controllers
                 return StatusCode(500, "Ошибка при создании сообщения");
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMessageAsync(int id, [FromBody] Message MessageUpdate)
+        [HttpPut]
+        public async Task<IActionResult> UpdateMessageAsync([FromBody] Message messageUpdate)
         {
-            if (MessageUpdate == null)
+            if (messageUpdate == null)
                 return BadRequest("Тело запроса пустое");
             try
             {
-                var Message = await messageRepository.GetByIdAsync(id);
-                if (Message == null)
-                    return NotFound("Сообщения с таким id не существует");
-
-                if (!string.IsNullOrEmpty(MessageUpdate.Text))
-                    Message.Text = MessageUpdate.Text;
-                if(!string.IsNullOrEmpty(MessageUpdate.Image))
-                    Message.Image = MessageUpdate.Image;
-                if(!string.IsNullOrEmpty(MessageUpdate.File))
-                    Message.File = MessageUpdate.File;
-
-                Message.StatusId = MessageUpdate.StatusId;
-
-                await messageRepository.UpdateAsync(Message);
+                await messageRepository.UpdateAsync(messageUpdate);
                 return Ok();
             }
             catch (Exception ex)
@@ -100,10 +87,10 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var Message = await messageRepository.GetByIdAsync(id);
-                if (Message == null)
+                var message = await messageRepository.GetByIdAsync(id);
+                if (message == null)
                     return NotFound("Сообщения с таким id не существует");
-                await messageRepository.DeleteAsync(Message);
+                await messageRepository.DeleteAsync(message);
                 return Ok();
             }
             catch (Exception ex)
