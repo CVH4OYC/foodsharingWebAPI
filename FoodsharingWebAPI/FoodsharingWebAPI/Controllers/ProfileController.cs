@@ -87,10 +87,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var profile = await profileRepository.GetByIdAsync(id);
-                if (profile == null)
-                    return NotFound("Профиля с таким id не существует");
-                await profileRepository.DeleteAsync(profile);
+                await profileRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

@@ -87,10 +87,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var transaction = await transactionRepository.GetByIdAsync(id);
-                if (transaction == null)
-                    return NotFound("Транзакции с таким id не существует");
-                await transactionRepository.DeleteAsync(transaction);
+                await transactionRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

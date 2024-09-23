@@ -87,10 +87,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var role = await roleRepository.GetByIdAsync(id);
-                if (role == null)
-                    return NotFound("Роли с таким id не существует");
-                await roleRepository.DeleteAsync(role);
+                await roleRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

@@ -1,5 +1,6 @@
 ﻿using FoodsharingWebAPI.Data;
 using FoodsharingWebAPI.Interfaces;
+using FoodsharingWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -38,9 +39,10 @@ namespace FoodsharingWebAPI.Repository
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task DeleteByIdAsync(int id)
         {
-            context.Remove(entity);
+            var entity = new Address { Id = id };
+            context.Entry(entity).State = EntityState.Deleted;
             await context.SaveChangesAsync();
         }
         public async Task<IEnumerable<T>> GetWithIncludeAsync(params Expression<Func<T, object>>[] includeProperties)

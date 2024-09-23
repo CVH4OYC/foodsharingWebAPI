@@ -72,10 +72,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var representative = await representativeRepository.GetByIdAsync(id);
-                if (representative == null)
-                    return NotFound("Представителя организации с таким id не существует");
-                await representativeRepository.DeleteAsync(representative);
+                await representativeRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

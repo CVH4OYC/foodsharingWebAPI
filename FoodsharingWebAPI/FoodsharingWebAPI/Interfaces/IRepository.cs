@@ -9,7 +9,7 @@ namespace FoodsharingWebAPI.Interfaces
         Task<T> GetByIdAsync(int id);
         Task AddAsync(T item);
         Task UpdateAsync(T item);
-        Task DeleteAsync(T item);
+        Task DeleteByIdAsync(int id);
         Task<IEnumerable<T>> GetWithIncludeAsync(params Expression<Func<T, object>>[] includeProperties);
         Task<IEnumerable<T>> GetWithIncludeAsync(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties);
     }

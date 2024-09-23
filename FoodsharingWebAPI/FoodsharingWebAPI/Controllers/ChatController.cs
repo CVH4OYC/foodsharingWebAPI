@@ -71,10 +71,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var chat = await chatRepository.GetByIdAsync(id);
-                if (chat == null)
-                    return NotFound("Чата с таким id не существует");
-                await chatRepository.DeleteAsync(chat);
+                await chatRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

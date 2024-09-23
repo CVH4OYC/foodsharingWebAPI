@@ -88,10 +88,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var user = await userRepository.GetByIdAsync(id);
-                if (user == null)
-                    return NotFound("Пользователя с таким id не существует");
-                await userRepository.DeleteAsync(user);
+                await userRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

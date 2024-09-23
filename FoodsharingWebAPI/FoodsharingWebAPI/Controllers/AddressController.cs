@@ -87,10 +87,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var address = await addressRepository.GetByIdAsync(id);
-                if (address == null)
-                    return NotFound("Адрес с таким id не существует");
-                await addressRepository.DeleteAsync(address);
+                await addressRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

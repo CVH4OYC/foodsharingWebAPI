@@ -87,10 +87,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var messageStatus = await messageStatusRepository.GetByIdAsync(id);
-                if (messageStatus == null)
-                    return NotFound("Статуса сообщения с таким id не существует");
-                await messageStatusRepository.DeleteAsync(messageStatus);
+                await messageStatusRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)

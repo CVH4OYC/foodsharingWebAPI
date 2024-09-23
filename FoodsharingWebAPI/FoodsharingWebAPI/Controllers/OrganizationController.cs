@@ -87,10 +87,7 @@ namespace FoodsharingWebAPI.Controllers
         {
             try
             {
-                var organization = await organizationRepository.GetByIdAsync(id);
-                if (organization == null)
-                    return NotFound("Организации с таким id не существует");
-                await organizationRepository.DeleteAsync(organization);
+                await organizationRepository.DeleteByIdAsync(id);
                 return Ok();
             }
             catch (Exception ex)
