@@ -395,7 +395,7 @@ namespace FoodsharingWebAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Announcements",
                 columns: new[] { "Id", "AddressId", "CategoryId", "DateCreation", "Description", "ExpirationDate", "Image", "Title", "UserId" },
-                values: new object[] { 1, 1, 4, new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2309), "Не нужна гречка, заберите пожалуйста!", new DateTime(2025, 4, 14, 19, 0, 0, 0, DateTimeKind.Utc), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHknlM8LS4l-x7kEYfmVZttH2PLnPW-EUKUw&s", "Гречка", 2 });
+                values: new object[] { 1, 1, 4, new DateTime(2024, 9, 23, 10, 23, 31, 899, DateTimeKind.Utc).AddTicks(8086), "Не нужна гречка, заберите пожалуйста!", new DateTime(2025, 4, 14, 19, 0, 0, 0, DateTimeKind.Utc), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHknlM8LS4l-x7kEYfmVZttH2PLnPW-EUKUw&s", "Гречка", 2 });
 
             migrationBuilder.InsertData(
                 table: "Chats",
@@ -428,7 +428,7 @@ namespace FoodsharingWebAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "Id", "ChatId", "Date", "File", "Image", "SenderId", "StatusId", "Text" },
-                values: new object[] { 1, 1, new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2532), null, null, 2, 1, "Добрый день, когда и как можно забрать гречку?" });
+                values: new object[] { 1, 1, new DateTime(2024, 9, 23, 10, 23, 31, 899, DateTimeKind.Utc).AddTicks(8454), null, null, 2, 1, "Добрый день, когда и как можно забрать гречку?" });
 
             migrationBuilder.InsertData(
                 table: "Representatives",
@@ -438,7 +438,7 @@ namespace FoodsharingWebAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Transactions",
                 columns: new[] { "Id", "AnnouncementId", "RecipientId", "SenderId", "StatusId", "TransactionDate" },
-                values: new object[] { 1, 1, 1, 2, 2, new DateTime(2024, 9, 19, 10, 5, 28, 978, DateTimeKind.Utc).AddTicks(2423) });
+                values: new object[] { 1, 1, 1, 2, 2, new DateTime(2024, 9, 23, 10, 23, 31, 899, DateTimeKind.Utc).AddTicks(8287) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Announcements_AddressId",
