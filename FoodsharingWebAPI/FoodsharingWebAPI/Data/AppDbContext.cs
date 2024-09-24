@@ -1,5 +1,5 @@
 ﻿using FoodsharingWebAPI.Models;
-using FoodsharingWebAPI.ModelsConficurations;
+using FoodsharingWebAPI.Data.ModelsConficurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodsharingWebAPI.Data

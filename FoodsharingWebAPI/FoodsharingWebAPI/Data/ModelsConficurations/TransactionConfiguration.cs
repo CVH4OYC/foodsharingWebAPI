@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using FoodsharingWebAPI.Models;
 
-namespace FoodsharingWebAPI.ModelsConficurations
+namespace FoodsharingWebAPI.Data.ModelsConficurations
 {
-    public class TransactionConfiguration: IEntityTypeConfiguration<Transaction>
+    public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     {
         /// <summary>
         /// Метод конфигурации модели Transaction

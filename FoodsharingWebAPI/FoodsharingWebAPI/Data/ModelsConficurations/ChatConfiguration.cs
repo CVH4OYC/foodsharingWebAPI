@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Reflection.Emit;
 
-namespace FoodsharingWebAPI.ModelsConficurations
+namespace FoodsharingWebAPI.Data.ModelsConficurations
 {
-    public class ChatConfiguration:IEntityTypeConfiguration<Chat>
+    public class ChatConfiguration : IEntityTypeConfiguration<Chat>
     {
         /// <summary>
         /// Метод конфигурации модели Chat
