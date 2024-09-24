@@ -11,7 +11,7 @@ namespace FoodsharingWebAPI.Repository
     /// </summary>
     public class Repository <T> : IRepository<T> where T : class
     {
-        DbContext context;
+        private readonly DbContext context;
         public Repository(AppDbContext context)
         {
             this.context = context;

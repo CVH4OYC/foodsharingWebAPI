@@ -10,8 +10,16 @@ namespace FoodsharingWebAPI.Controllers
     [Route("api/[controller]")]
     public class UserController : BaseController<User>
     {
-        public UserController(IRepository<User> repository, ILogger<UserController> logger)
+        public UserController(IUserRepository repository, ILogger<UserController> logger)
             : base(repository, logger) { }
+        public async Task<IActionResult> Register()
+        {
+            return Ok();
+        }
+        public async Task<IActionResult> Login()
+        {
+            return Ok();
+        }
 
     }
 }
