@@ -6,7 +6,9 @@ using System.Linq.Expressions;
 
 namespace FoodsharingWebAPI.Repository
 {
-    // универсальный репозиторий
+    /// <summary>
+    /// Класс универсального репозитория, реализующий IRepository
+    /// </summary>
     public class Repository <T> : IRepository<T> where T : class
     {
         DbContext context;

@@ -7,6 +7,9 @@ namespace FoodsharingWebAPI.ModelsConficurations
 {
     public class ChatConfiguration:IEntityTypeConfiguration<Chat>
     {
+        /// <summary>
+        /// Метод конфигурации модели Chat
+        /// </summary>
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
             builder.HasOne(c => c.FirstUser)

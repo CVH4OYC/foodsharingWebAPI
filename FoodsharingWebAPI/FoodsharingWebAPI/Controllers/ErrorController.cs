@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace FoodsharingWebAPI.Controllers
 {
     [ApiController]
@@ -11,6 +9,11 @@ namespace FoodsharingWebAPI.Controllers
 
     public class ErrorController : ControllerBase
     {
+        /// <summary>
+
+        /// Метод контроллера для обработки маршрута /error
+
+        /// </summary>
         [Route("/error")]
         public IActionResult HandleError() => Problem();
     }

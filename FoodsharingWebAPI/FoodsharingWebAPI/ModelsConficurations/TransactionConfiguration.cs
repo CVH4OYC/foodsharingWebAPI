@@ -6,6 +6,9 @@ namespace FoodsharingWebAPI.ModelsConficurations
 {
     public class TransactionConfiguration: IEntityTypeConfiguration<Transaction>
     {
+        /// <summary>
+        /// Метод конфигурации модели Transaction
+        /// </summary>
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
             builder.HasOne(t => t.Sender)

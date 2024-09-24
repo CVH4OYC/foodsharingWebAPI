@@ -5,6 +5,9 @@ namespace FoodsharingWebAPI.Data
 {
     public class SeedData
     {
+        /// <summary>
+        /// Метод для заполнения БД начальными данными
+        /// </summary>
         public static void Seed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
