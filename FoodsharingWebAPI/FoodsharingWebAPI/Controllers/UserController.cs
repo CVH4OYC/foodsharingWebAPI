@@ -12,5 +12,6 @@ namespace FoodsharingWebAPI.Controllers
     {
         public UserController(IRepository<User> repository, ILogger<UserController> logger)
             : base(repository, logger) { }
+
     }
 }

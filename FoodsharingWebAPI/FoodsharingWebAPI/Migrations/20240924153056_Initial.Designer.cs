@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodsharingWebAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240923102332_Initial")]
+    [Migration("20240924153056_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -120,7 +120,7 @@ namespace FoodsharingWebAPI.Migrations
                             Id = 1,
                             AddressId = 1,
                             CategoryId = 4,
-                            DateCreation = new DateTime(2024, 9, 23, 10, 23, 31, 899, DateTimeKind.Utc).AddTicks(8086),
+                            DateCreation = new DateTime(2024, 9, 24, 15, 30, 55, 245, DateTimeKind.Utc).AddTicks(1800),
                             Description = "Не нужна гречка, заберите пожалуйста!",
                             ExpirationDate = new DateTime(2025, 4, 14, 19, 0, 0, 0, DateTimeKind.Utc),
                             Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHknlM8LS4l-x7kEYfmVZttH2PLnPW-EUKUw&s",
@@ -250,7 +250,7 @@ namespace FoodsharingWebAPI.Migrations
                         {
                             Id = 1,
                             ChatId = 1,
-                            Date = new DateTime(2024, 9, 23, 10, 23, 31, 899, DateTimeKind.Utc).AddTicks(8454),
+                            Date = new DateTime(2024, 9, 24, 15, 30, 55, 245, DateTimeKind.Utc).AddTicks(1986),
                             SenderId = 2,
                             StatusId = 1,
                             Text = "Добрый день, когда и как можно забрать гречку?"
@@ -498,7 +498,7 @@ namespace FoodsharingWebAPI.Migrations
                             RecipientId = 1,
                             SenderId = 2,
                             StatusId = 2,
-                            TransactionDate = new DateTime(2024, 9, 23, 10, 23, 31, 899, DateTimeKind.Utc).AddTicks(8287)
+                            TransactionDate = new DateTime(2024, 9, 24, 15, 30, 55, 245, DateTimeKind.Utc).AddTicks(1902)
                         });
                 });
 
@@ -554,6 +554,9 @@ namespace FoodsharingWebAPI.Migrations
                         .HasColumnType("character varying(30)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.ToTable("Users");
 
