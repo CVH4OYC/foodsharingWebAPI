@@ -18,7 +18,7 @@ namespace FoodsharingWebAPI.Services
         /// <summary>
         /// Метод регистрации нового пользователя
         /// </summary>
-        public async Task<OperationResult> Register(string userName, string password, CancellationToken cancellationToken=default)
+        public async Task<OperationResult> RegisterAsync(string userName, string password, CancellationToken cancellationToken=default)
         {
             var user = await userRepository.GetByUserNameAsync(userName, cancellationToken);
             if (user != null)
@@ -32,7 +32,7 @@ namespace FoodsharingWebAPI.Services
         /// <summary>
         /// Метод идентификации и аутентификации пользователя по имени пользователя
         /// </summary>
-        public async Task<OperationResult> Login (string userName, string password, CancellationToken cancellationToken=default)
+        public async Task<OperationResult> LoginAsync (string userName, string password, CancellationToken cancellationToken=default)
         {
             var user = await userRepository.GetByUserNameAsync(userName, cancellationToken);
             if (user == null)
