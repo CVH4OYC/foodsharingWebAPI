@@ -1,6 +1,6 @@
-using FoodsharingWebAPI;
 using FoodsharingWebAPI.Data;
 using FoodsharingWebAPI.Extensions;
+using FoodsharingWebAPI.Infrastructure;
 using FoodsharingWebAPI.Interfaces;
 using FoodsharingWebAPI.Models;
 using FoodsharingWebAPI.Repository;

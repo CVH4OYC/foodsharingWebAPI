@@ -1,6 +1,6 @@
 ﻿using FoodsharingWebAPI.Interfaces;
 
-namespace FoodsharingWebAPI
+namespace FoodsharingWebAPI.Infrastructure
 {
     public class PasswordHasher : IPasswordHasher
     {

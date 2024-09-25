@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace FoodsharingWebAPI
+namespace FoodsharingWebAPI.Infrastructure
 {
     public class JwtProvider : IJwtProvider
     {

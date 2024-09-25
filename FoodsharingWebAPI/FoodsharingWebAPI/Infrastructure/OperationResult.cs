@@ -1,4 +1,4 @@
-﻿namespace FoodsharingWebAPI
+﻿namespace FoodsharingWebAPI.Infrastructure
 {
     /// <summary>
     /// Класс для передачи результатов выполнения методов

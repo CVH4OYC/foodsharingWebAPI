@@ -1,4 +1,5 @@
-﻿using FoodsharingWebAPI.Interfaces;
+﻿using FoodsharingWebAPI.Infrastructure;
+using FoodsharingWebAPI.Interfaces;
 
 namespace FoodsharingWebAPI.Services
 {
