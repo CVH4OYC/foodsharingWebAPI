@@ -28,7 +28,8 @@ namespace FoodsharingWebAPI.Controllers
         public async Task<IActionResult> Login(UserService userService, RegLogUserRequest reguest)
         {
             var token = await userService.Login(reguest.UserName, reguest.Password);
-            return Ok(token);
+            Response.Cookies.Append("tochno_ne_jwt_token", token);
+            return Ok();
         }
 
     }

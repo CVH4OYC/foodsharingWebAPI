@@ -1,15 +1,18 @@
 using FoodsharingWebAPI;
 using FoodsharingWebAPI.Data;
+using FoodsharingWebAPI.Extensions;
 using FoodsharingWebAPI.Interfaces;
 using FoodsharingWebAPI.Models;
 using FoodsharingWebAPI.Repository;
 using FoodsharingWebAPI.Services;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
+builder.Services.AddApiAuthentication(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -52,6 +55,15 @@ else
 }
 
 app.UseHttpsRedirection();
+
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Strict,
+    HttpOnly = HttpOnlyPolicy.Always,
+    Secure = CookieSecurePolicy.Always
+});
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

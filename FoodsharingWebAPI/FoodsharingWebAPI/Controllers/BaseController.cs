@@ -1,5 +1,6 @@
 ﻿using FoodsharingWebAPI.Interfaces;
 using FoodsharingWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace FoodsharingWebAPI.Controllers
     /// <summary>
     /// Общий класс для контроллеров
     /// </summary>
+    
     [Route("api/[controller]")]
     [ApiController]
     public class BaseController<T> : ControllerBase where T : class
@@ -22,6 +24,7 @@ namespace FoodsharingWebAPI.Controllers
         /// <summary>
         /// Метод для получения всех сущностей заданного типа
         /// </summary>
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<T>>> GetAllAsync(CancellationToken cancellationToken)
         {
