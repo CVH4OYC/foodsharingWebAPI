@@ -17,7 +17,7 @@ namespace FoodsharingWebAPI.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Имя пользователя
+        /// Имя пользователя (уникально)
         /// </summary>
         [StringLength(30, ErrorMessage = "Длина имени превышает 30 символов!")]
         [Required]

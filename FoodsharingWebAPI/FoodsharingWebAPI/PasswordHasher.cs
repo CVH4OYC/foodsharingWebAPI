@@ -4,9 +4,6 @@ namespace FoodsharingWebAPI
 {
     public class PasswordHasher : IPasswordHasher
     {
-        /// <summary>
-        /// Метод, генерирующий хеш пароля
-        /// </summary>
         public string Generate(string password)
         {
             return BCrypt.Net.BCrypt.EnhancedHashPassword(password);

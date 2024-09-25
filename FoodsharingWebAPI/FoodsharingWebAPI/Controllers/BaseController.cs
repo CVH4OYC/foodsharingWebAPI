@@ -24,7 +24,6 @@ namespace FoodsharingWebAPI.Controllers
         /// <summary>
         /// Метод для получения всех сущностей заданного типа
         /// </summary>
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<T>>> GetAllAsync(CancellationToken cancellationToken)
         {

@@ -18,19 +18,32 @@ namespace FoodsharingWebAPI.Controllers
         {
             this.repository = repository;
         }
+        /// <summary>
+        /// Метод, обрабатывающий маршрут для регистрации пользователя через <see cref="UserService"/>
+        /// </summary>
         [HttpPost("reg")]
         public async Task<IActionResult> Register(UserService userService, RegLogUserRequest request)
         {
-            await userService.Register(request.UserName, request.Password);
-            return Ok();
+            var result = await userService.Register(request.UserName, request.Password);
+            if (result.Success)
+                return Ok(result.Message);
+            else
+                return BadRequest(result.Message);
         }
+        /// <summary>
+        /// Метод, обрабатывающий маршрут для входа пользователя по имени пользователя и паролю
+        /// </summary>
         [HttpPost("log")]
         public async Task<IActionResult> Login(UserService userService, RegLogUserRequest reguest)
         {
-            var token = await userService.Login(reguest.UserName, reguest.Password);
-            Response.Cookies.Append("tochno_ne_jwt_token", token);
-            return Ok();
+            var result = await userService.Login(reguest.UserName, reguest.Password);
+            if (result.Success)
+            {
+                Response.Cookies.Append("tochno_ne_jwt_token", result.Data);
+                return Ok(result.Message);
+            }
+            else
+                return BadRequest(result.Message);
         }
-
     }
 }
