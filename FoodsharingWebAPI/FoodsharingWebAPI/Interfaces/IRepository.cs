@@ -27,7 +27,7 @@ namespace FoodsharingWebAPI.Interfaces
         /// <summary>
         /// Метод репозитория для удаления сущности из БД
         /// </summary>
-        Task DeleteByIdAsync(int id, CancellationToken cancellationToken = default);
+        Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
         /// <summary>
         /// Метод репозитория для получения сущностей с включением связанных данных
         /// </summary>

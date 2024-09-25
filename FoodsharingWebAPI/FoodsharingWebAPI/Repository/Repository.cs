@@ -41,9 +41,9 @@ namespace FoodsharingWebAPI.Repository
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteByIdAsync(int id, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
         {
-            var entity = new Address { Id = id };
+            context.Set<T>().Attach(entity);
             context.Entry(entity).State = EntityState.Deleted;
             await context.SaveChangesAsync();
         }

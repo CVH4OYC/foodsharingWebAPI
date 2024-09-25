@@ -72,10 +72,10 @@ namespace FoodsharingWebAPI.Controllers
         /// <summary>
         /// Метод для удаления сущности
         /// </summary>
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id, CancellationToken cancellationToken)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync([FromBody] T entityDelete, CancellationToken cancellationToken)
         {
-            await repository.DeleteByIdAsync(id, cancellationToken);
+            await repository.DeleteAsync(entityDelete, cancellationToken);
             return Ok();
         }
     }
