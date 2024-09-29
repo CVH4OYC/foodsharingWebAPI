@@ -18,18 +18,18 @@ namespace FoodsharingWebAPI.Repository
         }
         public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await context.Set<T>().ToListAsync(); ;
+            return await context.Set<T>().ToListAsync(cancellationToken); ;
         }
 
         public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
-            return await context.FindAsync<T>(id);
+            return await context.FindAsync<T>(id,cancellationToken);
         }
 
         public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
         {
-            await context.AddAsync(entity);
-            await context.SaveChangesAsync();
+            await context.AddAsync(entity, cancellationToken);
+            await context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
@@ -38,25 +38,25 @@ namespace FoodsharingWebAPI.Repository
             context.Set<T>().Attach(entity);
             // говорим, что сущность изменена
             context.Entry(entity).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
         {
             context.Set<T>().Attach(entity);
             context.Entry(entity).State = EntityState.Deleted;
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync(cancellationToken);
         }
         public async Task<IEnumerable<T>> GetWithIncludeAsync(CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includeProperties)
         {
-            return await Include(includeProperties).ToListAsync();
+            return await Include(includeProperties).ToListAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> GetWithIncludeAsync(Func<T, bool> predicate, CancellationToken cancellationToken = default,
+        public async Task<IEnumerable<T>> GetWithIncludeAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default,
             params Expression<Func<T, object>>[] includeProperties)
         {
             var query = Include(includeProperties);
-            return await Task.FromResult(query.Where(predicate).ToList());
+            return await query.Where(predicate).ToListAsync(cancellationToken);
         }
 
         private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)

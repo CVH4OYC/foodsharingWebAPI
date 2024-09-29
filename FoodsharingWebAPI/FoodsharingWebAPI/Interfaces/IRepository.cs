@@ -11,7 +11,7 @@ namespace FoodsharingWebAPI.Interfaces
         /// <summary>
         /// Метод репозитория для получения всех сущностей из БД
         /// </summary>
-        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken=default);
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
         /// <summary>
         /// Метод репозитория для получения сущности из БД по id
         /// </summary>
@@ -35,6 +35,7 @@ namespace FoodsharingWebAPI.Interfaces
         /// <summary>
         /// Метод репозитория для получения сущностей с включением связанных данных по какому-то условию
         /// </summary>
-        Task<IEnumerable<T>> GetWithIncludeAsync(Func<T, bool> predicate, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includeProperties);
+        Task<IEnumerable<T>> GetWithIncludeAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default,
+            params Expression<Func<T, object>>[] includeProperties);
     }
 }
