@@ -2,6 +2,7 @@ using FoodsharingWebAPI.Data;
 using FoodsharingWebAPI.Extensions;
 using FoodsharingWebAPI.Infrastructure;
 using FoodsharingWebAPI.Interfaces;
+using FoodsharingWebAPI.Middleware;
 using FoodsharingWebAPI.Models;
 using FoodsharingWebAPI.Repository;
 using FoodsharingWebAPI.Services;
@@ -55,6 +56,7 @@ else
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<TaskCancellationHandlingMiddleware>();
 
 app.UseCookiePolicy(new CookiePolicyOptions
 {
