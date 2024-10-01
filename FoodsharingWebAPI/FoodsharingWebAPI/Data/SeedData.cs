@@ -3,11 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FoodsharingWebAPI.Data
 {
+    /// <summary>
+    /// Заполнение БД начальными данными
+    /// </summary>
     public class SeedData
     {
         /// <summary>
-        /// Метод для заполнения БД начальными данными
+        /// Заполняет БД начальными данными
         /// </summary>
+        /// <param name="modelBuilder">builder для построения модели данных</param>
         public static void Seed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(

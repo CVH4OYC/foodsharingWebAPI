@@ -16,6 +16,8 @@ namespace FoodsharingWebAPI.Extensions
         /// Метод, добавляющий jwt-аутентификацию и авторизацию в коллекцию сервисов
         /// и настраивающий параметры валидации токенов
         /// </summary>
+        /// <param name="services">Коллекция сервисов для DI-контейнера</param>
+        /// <param name="configuration">Конфигурация приложения, содержащая параметры для JWT</param>
         public static void AddApiAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();

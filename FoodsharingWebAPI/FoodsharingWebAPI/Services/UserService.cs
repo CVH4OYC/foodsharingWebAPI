@@ -18,6 +18,10 @@ namespace FoodsharingWebAPI.Services
         /// <summary>
         /// Метод регистрации нового пользователя
         /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль</param>
+        /// <param name="cancellationToken">Токен отмены операции (по умолчанию None)</param>
+        /// <returns>Результат операции типа <see cref="OperationResult"/></returns>
         public async Task<OperationResult> RegisterAsync(string userName, string password, CancellationToken cancellationToken=default)
         {
             var user = await userRepository.GetByUserNameAsync(userName, cancellationToken);
@@ -28,10 +32,14 @@ namespace FoodsharingWebAPI.Services
             await userRepository.AddAsync(new Models.User { UserName = userName, Password = hashedPassword }, cancellationToken);
 
             return OperationResult.SuccessResult("Регистрация прошла успешно");
-        } 
+        }
         /// <summary>
         /// Метод идентификации и аутентификации пользователя по имени пользователя
         /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль</param>
+        /// <param name="cancellationToken">Токен отмены операции (по умолчанию None)</param>
+        /// <returns>Результат операции типа <see cref="OperationResult"/></returns>
         public async Task<OperationResult> LoginAsync (string userName, string password, CancellationToken cancellationToken=default)
         {
             var user = await userRepository.GetByUserNameAsync(userName, cancellationToken);

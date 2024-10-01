@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FoodsharingWebAPI.Data
 {
+    /// <summary>
+    /// Контекст БД
+    /// </summary>
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){ }

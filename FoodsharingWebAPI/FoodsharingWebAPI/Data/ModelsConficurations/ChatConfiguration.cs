@@ -5,11 +5,15 @@ using System.Reflection.Emit;
 
 namespace FoodsharingWebAPI.Data.ModelsConficurations
 {
+    /// <summary>
+    /// Конфигурация модели Chat
+    /// </summary>
     public class ChatConfiguration : IEntityTypeConfiguration<Chat>
     {
         /// <summary>
-        /// Метод конфигурации модели Chat
+        /// Конфигурирует модель Chat, задавая связи между сущностями и правила удаления
         /// </summary>
+        /// <param name="builder">builder для конфигурации сущности</param>
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
             builder.HasOne(c => c.FirstUser)

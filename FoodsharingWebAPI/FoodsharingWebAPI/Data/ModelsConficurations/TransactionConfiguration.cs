@@ -4,11 +4,15 @@ using FoodsharingWebAPI.Models;
 
 namespace FoodsharingWebAPI.Data.ModelsConficurations
 {
+    /// <summary>
+    /// Конфигурация модели Transaction
+    /// </summary>
     public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     {
         /// <summary>
-        /// Метод конфигурации модели Transaction
+        /// Конфигурирует модель Transaction, задавая связи между сущностями и правила удаления
         /// </summary>
+        /// <param name="builder">builder для конфигурации сущности</param>
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
             builder.HasOne(t => t.Sender)
