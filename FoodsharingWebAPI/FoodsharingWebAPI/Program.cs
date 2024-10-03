@@ -18,6 +18,7 @@ builder.Services.AddApiAuthentication(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITableRepository, TableRepository>();
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ExportToExcelService>();
