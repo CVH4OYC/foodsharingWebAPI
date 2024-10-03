@@ -28,9 +28,9 @@ namespace FoodsharingWebAPI.Extensions
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         // укзывает, будет ли валидироваться издатель при валидации токена
-                        ValidateIssuer = false,
+                        ValidateIssuer = true,
                         // будет ли валидироваться потребитель токена
-                        ValidateAudience = false,
+                        ValidateAudience = true,
                         // будет ли валидироваться время существования
                         ValidateLifetime = true,
 

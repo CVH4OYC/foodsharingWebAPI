@@ -30,7 +30,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//из-за добавления суффикса Async сломался CreatedAtAction
+//из-за добавления суффикса Async сломался
 //https://stackoverflow.com/questions/39459348/asp-net-core-web-api-no-route-matches-the-supplied-values
 builder.Services.AddControllersWithViews(options => { options.SuppressAsyncSuffixInActionNames = false; });
 
